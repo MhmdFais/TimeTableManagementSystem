@@ -18,32 +18,32 @@ import javax.swing.JOptionPane;
 public class LoginValidate {
           
           public boolean loginValidation(String username, String password) {
-    // check if the username and password are empty
-    if (username.isEmpty() || password.isEmpty()) {
-        JOptionPane.showMessageDialog(null, "Please enter your username and password.");
-        return false;
-    }
+          // check if the username and password are empty
+          if ( username.isEmpty() || password.isEmpty() ){
+                    JOptionPane.showMessageDialog(null, "Please enter your name and password");
+          }
+          
+          //validate the user
+          Connection conn = null;
+          PreparedStatement stmt = null;
+          ResultSet rs = null;
+          boolean valid = false;
 
-    // validate the username and password
-    Connection conn = null;
-    PreparedStatement stmt = null;
-    ResultSet rs = null;
-    boolean valid = false;
-
-    try {
-        conn = DataBaseConnection.getCon();
-        stmt = conn.prepareStatement("SELECT * FROM users WHERE username = ? AND password = ?");
-        stmt.setString(1, username);
-        stmt.setString(2, password);
-        rs = stmt.executeQuery();
-
-        if (rs.next()) {
-            valid = true;
-        }
-    } catch (SQLException e) {
-        System.out.println("Error executing query: " + e.getMessage());
-    } finally {
-        try {
+          try {
+                    conn = DataBaseConnection.getCon();
+                    stmt = conn.prepareStatement("SELECT * FROM users WHERE username = ? AND password = ?");
+                    stmt.setString(1, username);
+                    stmt.setString(2, password);
+                    rs = stmt.executeQuery();
+                    
+                    if ( rs.next() ){
+                              valid = true;
+                    }
+                    
+          }catch ( SQLException e ){
+                    System.out.println("Error executing query!!");           
+          } finally {
+          try {
             if (rs != null) {
                 rs.close();
             }
@@ -53,7 +53,7 @@ public class LoginValidate {
             if (conn != null) {
                 conn.close();
             }
-        } catch (SQLException e) {
+          } catch (SQLException e) {
             System.out.println("Error closing resources: " + e.getMessage());
         }
     }
