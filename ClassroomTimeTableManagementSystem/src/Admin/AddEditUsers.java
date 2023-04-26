@@ -1,14 +1,13 @@
 package Admin;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-
 /**
  *
- * @author Asus
+ * @author Muhammed (BE) / Kesara (FE)
  */
+
+import classes.AdminUserAdd;
+import javax.swing.JOptionPane;
+
 public class AddEditUsers extends javax.swing.JFrame {
 
     /**
@@ -128,6 +127,11 @@ public class AddEditUsers extends javax.swing.JFrame {
                     jAddButton.setAlignmentY(0.0F);
                     jAddButton.setBorder(null);
                     jAddButton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+                    jAddButton.addActionListener(new java.awt.event.ActionListener() {
+                              public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                        jAddButtonActionPerformed(evt);
+                              }
+                    });
                     getContentPane().add(jAddButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 520, 80, 40));
 
                     jButton1.setBackground(new java.awt.Color(237, 30, 121));
@@ -172,6 +176,25 @@ public class AddEditUsers extends javax.swing.JFrame {
     private void jUpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jUpdateButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jUpdateButtonActionPerformed
+
+          private void jAddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAddButtonActionPerformed
+                    // TODO add your handling code here:
+                    
+                    String usernaeme = jNameAdmin.getText();
+                    String password = jPasswordAdmin.getText();
+                    String type = jTypeAdmin.getToolTipText();
+                    String passwordConfirm = jConfirmPassAdmin.getText();
+                    
+                    AdminUserAdd obj = new AdminUserAdd();
+                    boolean value = obj.addUser(usernaeme, password, type, passwordConfirm);
+                    
+                    if ( value ){
+                              JOptionPane.showMessageDialog(null, "User added successfully!");
+                    }
+                    else {
+                            JOptionPane.showMessageDialog(null, "User adding failed!!");  
+                    }
+          }//GEN-LAST:event_jAddButtonActionPerformed
 
     /**
      * @param args the command line arguments
