@@ -189,10 +189,10 @@ public class AddEditUsers extends javax.swing.JFrame {
                     boolean value = obj.addUser(usernaeme, password, type, passwordConfirm);
                     
                     if ( value ){
-                              JOptionPane.showMessageDialog(null, "User added successfully!");
+                              System.out.println("Successfully added the user!!");
                     }
                     else {
-                            JOptionPane.showMessageDialog(null, "User adding failed!!");  
+                              System.out.println("Eror in adding user!!"); 
                     }
           }//GEN-LAST:event_jAddButtonActionPerformed
 
