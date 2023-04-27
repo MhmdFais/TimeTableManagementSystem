@@ -72,6 +72,11 @@ public class AddEditUsers extends javax.swing.JFrame {
                     jDeleteButtton.setAlignmentY(0.0F);
                     jDeleteButtton.setBorder(null);
                     jDeleteButtton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+                    jDeleteButtton.addActionListener(new java.awt.event.ActionListener() {
+                              public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                        jDeleteButttonActionPerformed(evt);
+                              }
+                    });
                     getContentPane().add(jDeleteButtton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 520, 110, 40));
 
                     jTypeAdmin.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
@@ -195,6 +200,15 @@ public class AddEditUsers extends javax.swing.JFrame {
                               System.out.println("Eror in adding user!!"); 
                     }
           }//GEN-LAST:event_jAddButtonActionPerformed
+
+          private void jDeleteButttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDeleteButttonActionPerformed
+                    // TODO add your handling code here:
+                    
+                    String usernaeme = jNameAdmin.getText();
+                    
+                    AdminUserAdd obj = new AdminUserAdd();
+                    obj.deleteUser(usernaeme);
+          }//GEN-LAST:event_jDeleteButttonActionPerformed
 
     /**
      * @param args the command line arguments
