@@ -1,5 +1,7 @@
 package Admin;
 
+import classes.Schedule;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -7,8 +9,10 @@ package Admin;
 
 /**
  *
- * @author Asus
+ * @author Asus 
  */
+
+import javax.swing.JOptionPane;
 public class AddEditSubjects extends javax.swing.JFrame {
 
     /**
@@ -118,6 +122,11 @@ public class AddEditSubjects extends javax.swing.JFrame {
         jButton6.setAlignmentY(0.0F);
         jButton6.setBorder(null);
         jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 520, 110, 40));
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
@@ -232,8 +241,29 @@ public class AddEditSubjects extends javax.swing.JFrame {
         int startTime = Integer.parseInt(jComboBox1.getSelectedItem().toString());
         int endtTime = Integer.parseInt(jComboBox3.getSelectedItem().toString());
         
+        Schedule obj = new Schedule();
         
+        boolean create = obj.createSchedule(subCode, subName, seat, startTime, endtTime, classroom, faculty);
+        
+        if ( create ){
+           JOptionPane.showMessageDialog(null, "Schedule created successfully!!"); 
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Schedule cration failed");
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        String faculty = jTextField3.getText().toLowerCase();
+        String classroom = jComboBox2.getSelectedItem().toString();
+        int startTime = Integer.parseInt(jComboBox1.getSelectedItem().toString());
+        int endtTime = Integer.parseInt(jComboBox3.getSelectedItem().toString());
+        
+        Schedule obj = new Schedule();
+        
+        boolean delete = obj.delete(startTime, endtTime, classroom, faculty);
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments

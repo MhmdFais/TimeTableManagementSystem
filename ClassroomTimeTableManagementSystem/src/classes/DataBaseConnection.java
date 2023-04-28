@@ -25,7 +25,7 @@ public class DataBaseConnection {
           static Connection getCon() throws SQLException{
                     
                     try {
-                              Class.forName("com.mysql.jdbc.Driver");
+                              Class.forName("com.mysql.cj.jdbc.Driver");
                     } catch (ClassNotFoundException ex){
                                throw new SQLException("JDBC driver not found", ex);
                     }

@@ -73,7 +73,7 @@ public class Schedule {
         
     } 
     
-    public void createSchedule ( String subCode, String subName, int seat, int startTime , int endTime,String clasroom , String faculty  ) {
+    public boolean createSchedule ( String subCode, String subName, int seat, int startTime , int endTime,String clasroom , String faculty  ) {
        
         if ( is_class_available( clasroom, faculty ) ){
             
@@ -87,22 +87,55 @@ public class Schedule {
                             + " faculty, classSize, start, end, subid ) "
                             + " VALUES ("+clasroom+", "+subName+", "+faculty+", "+seat+", "+startTime+", "+endTime+", "+subCode+" ) " );
                     
-                    JOptionPane.showMessageDialog(null, "Schedule added successfully!!");
-                    System.out.println("Schedule adding successfull"); 
+                    //JOptionPane.showMessageDialog(null, "Schedule added successfully!!");
+                    System.out.println("Schedule adding successfull");
+                    return true;
                 } catch ( SQLException e ){
-                    JOptionPane.showMessageDialog(null,"SQL Connection failed!");
+                    //JOptionPane.showMessageDialog(null,"SQL Connection failed!");
+                    return false;
                 }
                 
             }
             else {
-                JOptionPane.showMessageDialog(null, "Time slot is not available!");
+                //JOptionPane.showMessageDialog(null, "Time slot is not available!");
                 System.out.println("Time slot is not available!");
+                return false;
             }
             
         } 
         else {
-            JOptionPane.showMessageDialog(null,"Classroom is not available!");
+            //JOptionPane.showMessageDialog(null,"Classroom is not available!");
             System.out.println("Classroom is not available! "); 
+            return false;
         }
     }
+    
+    
+    public boolean delete ( int startTime , int endTime, String clasroom , String faculty ){
+        
+        if ( is_class_available( clasroom, faculty ) ) {
+            
+            if ( is_time_available( startTime, endTime ) ) {
+                
+                try {
+                  Connection con = DataBaseConnection.getCon();
+                  Statement st = con.createStatement(); 
+                  
+                  String delete = " DELETE FROM schedule WHERE classname = ' "+clasroom+" ', faculty = '"+faculty+"', start= '"+startTime+"', end='"+endTime+"' "; 
+                  st.executeLargeUpdate(delete);
+                  return true;
+                } catch ( SQLException e ) {
+                    return false;
+                }
+                
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+          return false;  
+        } 
+    }
+    
 }
