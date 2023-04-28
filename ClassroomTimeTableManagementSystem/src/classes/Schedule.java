@@ -9,9 +9,11 @@ package classes;
  * @author Muhammed
  */
 
+
 import java.sql.*;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
+import java.sql.ResultSet;
 
 public class Schedule {
     
@@ -34,8 +36,8 @@ public class Schedule {
             }
             
             // If the time slot is available, add the booking to the database
-            String insertQuery = "INSERT INTO schedule (start, end) VALUES (" + startTime + ", " + endTime + ")";
-            st.executeUpdate(insertQuery);
+            //String insertQuery = "INSERT INTO schedule (start, end) VALUES (" + startTime + ", " + endTime + ")";
+            //st.executeUpdate(insertQuery);
             return true;
         } catch ( SQLException e ){
             return false;
@@ -50,17 +52,57 @@ public class Schedule {
             Statement st = con.createStatement();
             
             // Check if the classroom is available for the given faculty
-             
+            String query = ( " SELECT classname, faculty FROM schedule WHERE classname="+clasroom+", faculty="+faculty+" " );
+            ResultSet rs = st.executeQuery(query);
+            if ( rs.next() ){
+               int count = rs.getInt(1);
+               if (count > 0) {
+                    //JOptionPane.showMessageDialog(null,"Classroom is not available!!");
+                    return false;
+                }
+            }
+            
+            //String insertQuery = "INSERT INTO schedule (classname, faculty) VALUES (" + clasroom + ", " + faculty + ")";
+            //st.executeUpdate(insertQuery);
+            return true;
+            
         } catch ( SQLException e) {
             System.out.println(e);
-            return false;
+            return false; 
         }
         
-        return true;
     } 
     
-    public void createSchedule ( String subCode, String subName, int seat ) {
-        
-        
+    public void createSchedule ( String subCode, String subName, int seat, int startTime , int endTime,String clasroom , String faculty  ) {
+       
+        if ( is_class_available( clasroom, faculty ) ){
+            
+            if ( is_time_available( startTime, endTime ) ) {
+                
+                try {
+                    Connection con = DataBaseConnection.getCon();
+                    Statement st = con.createStatement();
+                    
+                    st.executeLargeUpdate( " INSERT INTO schedule ( classname, subject,"
+                            + " faculty, classSize, start, end, subid ) "
+                            + " VALUES ("+clasroom+", "+subName+", "+faculty+", "+seat+", "+startTime+", "+endTime+", "+subCode+" ) " );
+                    
+                    JOptionPane.showMessageDialog(null, "Schedule added successfully!!");
+                    System.out.println("Schedule adding successfull"); 
+                } catch ( SQLException e ){
+                    JOptionPane.showMessageDialog(null,"SQL Connection failed!");
+                }
+                
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Time slot is not available!");
+                System.out.println("Time slot is not available!");
+            }
+            
+        } 
+        else {
+            JOptionPane.showMessageDialog(null,"Classroom is not available!");
+            System.out.println("Classroom is not available! "); 
+        }
     }
 }

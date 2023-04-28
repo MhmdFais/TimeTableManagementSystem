@@ -56,21 +56,32 @@ public class AddEditSubjects extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(450, 650));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jComboBox3.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
+        jComboBox3.setForeground(new java.awt.Color(64, 134, 200));
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24" }));
         getContentPane().add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 250, 140, 30));
 
+        jLabel9.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("End Time");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 110, 30));
 
+        jComboBox1.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
+        jComboBox1.setForeground(new java.awt.Color(64, 134, 200));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24" }));
         getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 140, 30));
 
+        jLabel5.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Start time");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 100, 30));
+
+        jSpinner1.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
+        jSpinner1.setBorder(null);
         getContentPane().add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 400, 140, 30));
 
+        jComboBox2.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
+        jComboBox2.setForeground(new java.awt.Color(64, 134, 200));
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "cls 1", "cls 2", "cls 3", "cls 4", "cls 5" }));
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,6 +90,7 @@ public class AddEditSubjects extends javax.swing.JFrame {
         });
         getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 140, 30));
 
+        jLabel6.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Class Room");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 110, 30));
