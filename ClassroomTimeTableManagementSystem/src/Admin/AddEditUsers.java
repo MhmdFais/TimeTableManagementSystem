@@ -187,7 +187,7 @@ public class AddEditUsers extends javax.swing.JFrame {
                     
                     String usernaeme = jNameAdmin.getText();
                     String password = jPasswordAdmin.getText();
-                    String type = jTypeAdmin.getToolTipText();
+                    String type = jTypeAdmin.getSelectedItem().toString();s
                     String passwordConfirm = jConfirmPassAdmin.getText();
                     
                     AdminUserAdd obj = new AdminUserAdd();

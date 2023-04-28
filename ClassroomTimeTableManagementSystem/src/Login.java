@@ -1,6 +1,6 @@
 
 import Admin.Dashboard;
-import classes.LoginValidate;
+import classes.User;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import javax.swing.JOptionPane;
@@ -101,7 +101,7 @@ public class Login extends javax.swing.JFrame {
         // password
         String password = jPasswordField1.getText();
         
-        LoginValidate obj = new LoginValidate();
+        User obj = new User();
         
         boolean isValidLogin = obj.loginValidation(username, password);
         if (isValidLogin) {

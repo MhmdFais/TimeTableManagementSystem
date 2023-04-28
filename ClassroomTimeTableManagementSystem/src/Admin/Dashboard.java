@@ -37,7 +37,7 @@ public class Dashboard extends javax.swing.JFrame {
           // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
           private void initComponents() {
 
-                    jButton6 = new javax.swing.JButton();
+                    jSignout = new javax.swing.JButton();
                     jButton5 = new javax.swing.JButton();
                     jLabel8 = new javax.swing.JLabel();
                     jLabel7 = new javax.swing.JLabel();
@@ -58,13 +58,18 @@ public class Dashboard extends javax.swing.JFrame {
                     setResizable(false);
                     getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-                    jButton6.setBackground(new java.awt.Color(237, 30, 121));
-                    jButton6.setFont(new java.awt.Font("Poppins Medium", 0, 15)); // NOI18N
-                    jButton6.setForeground(new java.awt.Color(255, 255, 255));
-                    jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logout.png"))); // NOI18N
-                    jButton6.setText("Sign Out");
-                    jButton6.setBorder(null);
-                    getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 20, 110, 40));
+                    jSignout.setBackground(new java.awt.Color(237, 30, 121));
+                    jSignout.setFont(new java.awt.Font("Poppins Medium", 0, 15)); // NOI18N
+                    jSignout.setForeground(new java.awt.Color(255, 255, 255));
+                    jSignout.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logout.png"))); // NOI18N
+                    jSignout.setText("Sign Out");
+                    jSignout.setBorder(null);
+                    jSignout.addActionListener(new java.awt.event.ActionListener() {
+                              public void actionPerformed(java.awt.event.ActionEvent evt) {
+                                        jSignoutActionPerformed(evt);
+                              }
+                    });
+                    getContentPane().add(jSignout, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 20, 110, 40));
 
                     jButton5.setBackground(new java.awt.Color(237, 30, 121));
                     jButton5.setFont(new java.awt.Font("Poppins Medium", 0, 15)); // NOI18N
@@ -234,6 +239,13 @@ public class Dashboard extends javax.swing.JFrame {
         //cls.toFront();
     }//GEN-LAST:event_jReportActionPerformed
 
+          private void jSignoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSignoutActionPerformed
+                    // TODO add your handling code here:
+                    
+                    
+                    
+          }//GEN-LAST:event_jSignoutActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -271,7 +283,6 @@ public class Dashboard extends javax.swing.JFrame {
 
           // Variables declaration - do not modify//GEN-BEGIN:variables
           private javax.swing.JButton jButton5;
-          private javax.swing.JButton jButton6;
           private javax.swing.JButton jClassroom;
           private javax.swing.JLabel jLabel1;
           private javax.swing.JLabel jLabel2;
@@ -284,5 +295,6 @@ public class Dashboard extends javax.swing.JFrame {
           private javax.swing.JButton jReport;
           private javax.swing.JButton jResource;
           private javax.swing.JButton jSchedule;
+          private javax.swing.JButton jSignout;
           // End of variables declaration//GEN-END:variables
 }
