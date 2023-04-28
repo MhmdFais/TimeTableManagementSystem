@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  */
 public class DataBaseConnection {
           
-           private static Connection con;
+          private static Connection con;
           private static final String url = "jdbc:mysql://localhost::3306/timetable";
           private static final String username = "root";
           private static final String password = "";
@@ -31,7 +31,9 @@ public class DataBaseConnection {
                     }
                     try {
                               con = DriverManager.getConnection(url,username,password);
+                              System.out.println("okk");
                     } catch (SQLException ex){
+                        System.out.println(ex);
                               System.out.println("Data Base connection error !!");
                     }
                     return con;
@@ -46,5 +48,10 @@ public class DataBaseConnection {
                               }
                     }
           }
+     
           
+          public static void main(String[] args) throws SQLException {
+              getCon();
+          }
+    }
 }
