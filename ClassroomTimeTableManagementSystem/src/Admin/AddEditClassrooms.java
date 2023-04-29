@@ -1,5 +1,7 @@
 package Admin;
 
+import classes.Classroom;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -29,14 +31,14 @@ public class AddEditClassrooms extends javax.swing.JFrame {
     private void initComponents() {
 
         jComboBox1 = new javax.swing.JComboBox<>();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        updclass = new javax.swing.JButton();
+        delclass = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
+        addclass = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -44,7 +46,6 @@ public class AddEditClassrooms extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(450, 650));
-        setPreferredSize(new java.awt.Dimension(450, 650));
         setResizable(false);
         setSize(new java.awt.Dimension(450, 650));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -52,30 +53,35 @@ public class AddEditClassrooms extends javax.swing.JFrame {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "cls1", "cls2", "cls3", "cls4", "cls5" }));
         getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 182, 140, 30));
 
-        jButton5.setBackground(new java.awt.Color(38, 106, 169));
-        jButton5.setFont(new java.awt.Font("Poppins Medium", 0, 15)); // NOI18N
-        jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/update.png"))); // NOI18N
-        jButton5.setText("Update");
-        jButton5.setAlignmentY(0.0F);
-        jButton5.setBorder(null);
-        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        updclass.setBackground(new java.awt.Color(38, 106, 169));
+        updclass.setFont(new java.awt.Font("Poppins Medium", 0, 15)); // NOI18N
+        updclass.setForeground(new java.awt.Color(255, 255, 255));
+        updclass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/update.png"))); // NOI18N
+        updclass.setText("Update");
+        updclass.setAlignmentY(0.0F);
+        updclass.setBorder(null);
+        updclass.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        updclass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                updclassActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 110, 40));
+        getContentPane().add(updclass, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 110, 40));
 
-        jButton6.setBackground(new java.awt.Color(38, 106, 169));
-        jButton6.setFont(new java.awt.Font("Poppins Medium", 0, 15)); // NOI18N
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/delete.png"))); // NOI18N
-        jButton6.setText("Delete");
-        jButton6.setAlignmentY(0.0F);
-        jButton6.setBorder(null);
-        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 520, 110, 40));
+        delclass.setBackground(new java.awt.Color(38, 106, 169));
+        delclass.setFont(new java.awt.Font("Poppins Medium", 0, 15)); // NOI18N
+        delclass.setForeground(new java.awt.Color(255, 255, 255));
+        delclass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/delete.png"))); // NOI18N
+        delclass.setText("Delete");
+        delclass.setAlignmentY(0.0F);
+        delclass.setBorder(null);
+        delclass.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        delclass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delclassActionPerformed(evt);
+            }
+        });
+        getContentPane().add(delclass, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 520, 110, 40));
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
@@ -105,15 +111,20 @@ public class AddEditClassrooms extends javax.swing.JFrame {
         jLabel3.setText("Faculty");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 180, 20));
 
-        jButton4.setBackground(new java.awt.Color(38, 106, 169));
-        jButton4.setFont(new java.awt.Font("Poppins Medium", 0, 15)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/add.png"))); // NOI18N
-        jButton4.setText("Add");
-        jButton4.setAlignmentY(0.0F);
-        jButton4.setBorder(null);
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 520, 80, 40));
+        addclass.setBackground(new java.awt.Color(38, 106, 169));
+        addclass.setFont(new java.awt.Font("Poppins Medium", 0, 15)); // NOI18N
+        addclass.setForeground(new java.awt.Color(255, 255, 255));
+        addclass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/add.png"))); // NOI18N
+        addclass.setText("Add");
+        addclass.setAlignmentY(0.0F);
+        addclass.setBorder(null);
+        addclass.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        addclass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addclassActionPerformed(evt);
+            }
+        });
+        getContentPane().add(addclass, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 520, 80, 40));
 
         jButton1.setBackground(new java.awt.Color(237, 30, 121));
         jButton1.setFont(new java.awt.Font("Poppins Medium", 0, 15)); // NOI18N
@@ -154,9 +165,41 @@ public class AddEditClassrooms extends javax.swing.JFrame {
         new Classrooms().setState(java.awt.Frame.NORMAL);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void updclassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updclassActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+        String faculty = jTextField1.getText();
+        String classroom = jComboBox1.getSelectedItem().toString();
+        String capacity = jTextField3.getText();
+        
+        Classroom obj = new Classroom(faculty,classroom,capacity);
+        
+        obj.upd();
+        
+        
+    }//GEN-LAST:event_updclassActionPerformed
+
+    private void addclassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addclassActionPerformed
+        // TODO add your handling code here:
+        String faculty = jTextField1.getText();
+        String classroom = jComboBox1.getSelectedItem().toString();
+        String capacity = jTextField3.getText();
+        
+        Classroom obj = new Classroom(faculty,classroom,capacity);
+        
+        obj.sub();
+        
+    }//GEN-LAST:event_addclassActionPerformed
+
+    private void delclassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delclassActionPerformed
+        // TODO add your handling code here:
+        String faculty = jTextField1.getText();
+        String classroom = jComboBox1.getSelectedItem().toString();
+        String capacity = jTextField3.getText();
+        
+        Classroom obj = new Classroom(faculty,classroom,capacity);
+        
+        obj.del();
+    }//GEN-LAST:event_delclassActionPerformed
 
     /**
      * @param args the command line arguments
@@ -195,10 +238,9 @@ public class AddEditClassrooms extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addclass;
+    private javax.swing.JButton delclass;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -207,5 +249,6 @@ public class AddEditClassrooms extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JButton updclass;
     // End of variables declaration//GEN-END:variables
 }
