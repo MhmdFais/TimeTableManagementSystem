@@ -50,8 +50,6 @@ public class DataBaseConnection {
           }
      
           
-          public static void main(String[] args) throws SQLException {
-              getCon();
-          }
-    }
+         
+    
 }

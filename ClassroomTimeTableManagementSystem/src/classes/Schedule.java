@@ -10,6 +10,7 @@ package classes;
  */
 
 
+import Admin.AddEditSubjects;
 import java.sql.*;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
@@ -108,26 +109,32 @@ public class Schedule {
             System.out.println("Classroom is not available! "); 
             return false;
         }
+        
     }
     
     
-    public boolean delete ( int startTime , int endTime, String clasroom , String faculty ){
+    public boolean delete ( String subCode, String subName, int seat, int startTime , int endTime,String clasroom , String faculty ){
         
         if ( is_class_available( clasroom, faculty ) ) {
             
             if ( is_time_available( startTime, endTime ) ) {
                 
-                try {
-                  Connection con = DataBaseConnection.getCon();
-                  Statement st = con.createStatement(); 
+                if ( show( subCode,subName,seat,startTime ,endTime,clasroom ,faculty ) ){
+                    
+                    try {
+                        Connection con = DataBaseConnection.getCon();
+                        Statement st = con.createStatement(); 
                   
-                  String delete = " DELETE FROM schedule WHERE classname = ' "+clasroom+" ', faculty = '"+faculty+"', start= '"+startTime+"', end='"+endTime+"' "; 
-                  st.executeLargeUpdate(delete);
-                  return true;
-                } catch ( SQLException e ) {
+                        String delete = " DELETE FROM schedule WHERE classname = ' "+clasroom+" ', faculty = '"+faculty+"', start= '"+startTime+"', end='"+endTime+"' "; 
+                        st.executeLargeUpdate(delete);
+                        return true;
+                    } catch ( SQLException e ) {
+                    return false;
+                    }
+                    
+                } else {
                     return false;
                 }
-                
             }
             else {
                 return false;
@@ -136,6 +143,53 @@ public class Schedule {
         else {
           return false;  
         } 
+        
     }
     
+    public void update ( String subCode, String subName, int seat  ) {
+        
+        try {
+            Connection con = DataBaseConnection.getCon();
+            Statement st = con.createStatement();
+            
+            int rowUpdate = st.executeUpdate( " UPDATE schedule SET subid = '"+subCode+" ', subject = '"+subName+" ', classSize =' "+seat+" ' " );
+            System.out.println("Row updated!" + rowUpdate);
+            JOptionPane.showMessageDialog(null, "Schedule update successfull!");
+        } catch ( SQLException ex ){
+            System.out.println("update failed" + ex);
+            JOptionPane.showMessageDialog(null, "Schedule is not updated!");
+        }
+        
+    }
+    
+    public boolean show ( String subCode, String subName, int seat, int startTime , int endTime,String clasroom , String faculty ){
+        
+        if ( is_class_available( clasroom, faculty ) ) {
+            
+            if ( is_time_available( startTime, endTime ) ) {
+                
+                try {
+                    Connection con = DataBaseConnection.getCon();
+                    Statement st = con.createStatement(); 
+                    
+                    ResultSet rs = st.executeQuery(" SELECT * FROM schedule ");
+                    String sid = rs.getString(8);
+                    String sname = rs.getString(3);
+                    int seats = rs.getInt(5);
+                    
+                    AddEditSubjects obja = new AddEditSubjects();
+                    
+                    obja.display(sid, sname, seats);
+                    return true;
+                } catch ( SQLException ex){
+                    System.out.println("update error"+ ex);
+                    return false;
+                    //JOptionPane.showMessageDialog(null, "No class is not scheduled for this time");
+                }
+            }
+            return false;
+            
+        }
+        return false;
+    }
 }

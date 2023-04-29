@@ -2,10 +2,6 @@ package Admin;
 
 import classes.Schedule;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 
 /**
  *
@@ -13,6 +9,8 @@ import classes.Schedule;
  */
 
 import javax.swing.JOptionPane;
+
+
 public class AddEditSubjects extends javax.swing.JFrame {
 
     /**
@@ -224,8 +222,33 @@ public class AddEditSubjects extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+       
+        String faculty = jTextField3.getText().toLowerCase();
+        String classroom = jComboBox2.getSelectedItem().toString();
+        int startTime = Integer.parseInt(jComboBox1.getSelectedItem().toString());
+        int endtTime = Integer.parseInt(jComboBox3.getSelectedItem().toString());
+        String subCode = jTextField1.getText();
+        String subName = jTextField2.getText().toLowerCase();
+        int seat = ((Integer) jSpinner1.getValue());
+        
+        Schedule obj = new Schedule();
+        
+        boolean show = obj.show(subCode, subName, seat, startTime, endtTime, classroom, faculty);
+        
+        if ( show ){
+            obj.update(subCode, subName, seat);
+        }
+        
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    public void display ( String subCode, String subName, int seat ) {
+        
+        jTextField1.setText(subCode);
+        jTextField2.setText(subName);
+        jSpinner1.setValue(seat);
+        
+    }
+    
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
@@ -255,14 +278,31 @@ public class AddEditSubjects extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
+        String subCode = jTextField1.getText();
+        String subName = jTextField2.getText().toLowerCase();
         String faculty = jTextField3.getText().toLowerCase();
+        int seat = ((Integer) jSpinner1.getValue());
         String classroom = jComboBox2.getSelectedItem().toString();
         int startTime = Integer.parseInt(jComboBox1.getSelectedItem().toString());
         int endtTime = Integer.parseInt(jComboBox3.getSelectedItem().toString());
         
         Schedule obj = new Schedule();
         
-        boolean delete = obj.delete(startTime, endtTime, classroom, faculty);
+        boolean show = obj.show(subCode, subName, seat, startTime, endtTime, classroom, faculty);
+        
+        if ( show ) {
+            
+            boolean delete = obj.delete(subCode, subName, seat, startTime, endtTime, classroom, faculty);
+        
+            if ( delete ){
+                    JOptionPane.showMessageDialog(null, "Deleted successfully! ");
+            } 
+            else {
+                    JOptionPane.showMessageDialog(null, "Deleting failed!"); 
+            }
+            
+        }
+         
     }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
