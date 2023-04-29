@@ -16,22 +16,37 @@ import javax.swing.JOptionPane;
 
 
 public class Resource {
-    
-    
+ 
+    /**public void add( String class, String faculty, int whiteNo, int projNo ){
         
-          public void add( String classroom, String res, int num ){
-                    
-                    try {
-                              Connection con = DataBaseConnection.getCon();
-                              Statement st = con.createStatement();
-                              st.executeUpdate( " INSERT INTO resources (classroom, resname, quantity)  VALUES ( ' "+classroom+" ', ' "+res+" ', ' "+num+" ' )"  );
-                              JOptionPane.showMessageDialog(null, "Resource addition successfull !");
-                              System.out.println("Resource addition successfull");
-                    } catch ( SQLException e ) {
-                              JOptionPane.showMessageDialog(null, "Resource addition failed !");
-                              System.out.println(e);
-                    }
-                    DataBaseConnection.closeCon();
-          }
-          
+        try {
+            Connection con = DataBaseConnection.getCon();
+            Statement st = con.createStatement();
+            
+            
+            int rowUp = st.executeQuery( " UPDATE classroom SET whiteboards=' "+whiteNo+" ', projectors=' "+projNo+" ' WHERE classname=' "+class+" ',faculty =' "+faculty+" ' " ); 
+            
+        } catch ( SQLException ex ){
+            System.out.println(ex);
+        }
+        
+        
+    }**/
+    
+    public void add( String classes, String faculty, int whiteNo, int projNo ){
+    
+         try {
+            Connection con = DataBaseConnection.getCon();
+            Statement st = con.createStatement();
+            
+            
+            ResultSet rowUp = st.executeQuery( " UPDATE classroom SET whiteboards=' "+whiteNo+" ', projectors=' "+projNo+" ' WHERE classname=' "+classes+" ',faculty =' "+faculty+" ' " ); 
+            JOptionPane.showMessageDialog(null, "Resource addition successfull!");
+            System.out.println("resource add done" + rowUp);
+        } catch ( SQLException ex ){
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Resource addition not successfull!");
+        }
+    }
+
 }
