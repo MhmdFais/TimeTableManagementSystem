@@ -1,6 +1,9 @@
 package Admin;
 
 import classes.Resource;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -150,7 +153,11 @@ public class AddEditResources extends javax.swing.JFrame {
                     
                     Resource obj = new Resource();
                     
-                    obj.add(classroom, faculty, whiteQuan, projQun);
+        try {
+            obj.add(classroom, faculty, whiteQuan, projQun);
+        } catch (SQLException ex) {
+            Logger.getLogger(AddEditResources.class.getName()).log(Level.SEVERE, null, ex);
+        }
           }//GEN-LAST:event_jAddResActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
