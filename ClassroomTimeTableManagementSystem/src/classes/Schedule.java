@@ -11,10 +11,12 @@ package classes;
 
 
 import Admin.AddEditSubjects;
+import Admin.Subjects;
 import java.sql.*;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import java.sql.ResultSet;
+import javax.swing.table.*;
 
 public class Schedule {
     
@@ -191,5 +193,30 @@ public class Schedule {
             
         }
         return false;
+    }
+    
+    public void showSubjects(){
+        
+        try {
+            Connection con = DataBaseConnection.getCon();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("SELECT subject, faculty,subid FROM schedule");
+            
+            Subjects obj = new Subjects();
+            DefaultTableModel model = (DefaultTableModel) obj.jTable1.getModel();
+            model.setRowCount(0);
+            
+            while (rs.next()) {
+                Object[] row = new Object[3];
+                row[0] = rs.getInt("subid");
+                row[1] = rs.getString("subject");
+                row[2] = rs.getString("faculty");
+                model.addRow(row);
+            }
+            
+            System.out.println("subject showing success");
+        } catch (SQLException e){
+            System.out.println("Subjects showing failed "+e);
+        }
     }
 }

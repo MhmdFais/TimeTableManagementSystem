@@ -1,6 +1,8 @@
 package Admin;
 
 
+import classes.Classroom;
+import classes.Schedule;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 
@@ -92,7 +94,7 @@ public class Classrooms extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Department", "Class Code", "Capacity", "Whiteboards", "Projectors"
+                "Faculty", "Class Code", "Capacity", "Whiteboards", "Projectors"
             }
         ));
         jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
@@ -160,6 +162,11 @@ public class Classrooms extends javax.swing.JFrame {
         jButton3.setBorder(null);
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jButton3.setIconTextGap(7);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 160, 40));
 
         jButton1.setBackground(new java.awt.Color(237, 30, 121));
@@ -205,6 +212,9 @@ public class Classrooms extends javax.swing.JFrame {
         //close();
         Subjects sub = new Subjects();
         sub.setVisible (true);
+        Schedule obj = new Schedule();
+        
+        obj.showSubjects();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -218,6 +228,12 @@ public class Classrooms extends javax.swing.JFrame {
         AddEditSubjects add = new AddEditSubjects();
         add.setVisible (true);
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        Classroom obj = new Classroom();
+        obj.showClassroom();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -266,6 +282,6 @@ public class Classrooms extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

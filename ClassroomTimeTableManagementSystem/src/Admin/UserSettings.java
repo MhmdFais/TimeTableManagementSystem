@@ -1,6 +1,7 @@
 package Admin;
 
 
+import classes.AdminUserAdd;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 
@@ -150,6 +151,11 @@ public class UserSettings extends javax.swing.JFrame {
         jButton3.setBorder(null);
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jButton3.setIconTextGap(7);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 160, 40));
 
         jButton1.setBackground(new java.awt.Color(237, 30, 121));
@@ -194,6 +200,12 @@ public class UserSettings extends javax.swing.JFrame {
         add.setVisible (true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        AdminUserAdd obj = new AdminUserAdd();
+        obj.showUser();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -236,6 +248,6 @@ public class UserSettings extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    public javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,6 +1,8 @@
 package Admin;
 
 
+import classes.AdminUserAdd;
+import classes.Classroom;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 
@@ -215,6 +217,9 @@ public class Dashboard extends javax.swing.JFrame {
         UserSettings user = new UserSettings();
         user.setVisible (true);     
         user.toFront();
+        
+        AdminUserAdd obj = new AdminUserAdd();
+        obj.showUser();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jResourceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jResourceActionPerformed
@@ -231,6 +236,9 @@ public class Dashboard extends javax.swing.JFrame {
         Classrooms cls = new Classrooms();
         cls.setVisible(true);
         //cls.toFront();
+        
+        Classroom obj = new Classroom();
+        obj.showClassroom();
     }//GEN-LAST:event_jClassroomActionPerformed
 
     private void jReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jReportActionPerformed

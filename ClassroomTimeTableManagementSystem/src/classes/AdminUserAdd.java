@@ -5,6 +5,7 @@ package classes;
  *
  * @author Muhammed
  */
+import Admin.UserSettings;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -12,6 +13,7 @@ import javax.swing.JOptionPane;
 import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.*;
 
 public class AdminUserAdd {
           
@@ -101,5 +103,30 @@ public class AdminUserAdd {
                               return false;
                     }
                     return true;
+          }
+     
+        
+          public void showUser(){
+              
+              try {
+            Connection con = DataBaseConnection.getCon();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("SELECT username, role FROM users");
+            
+            UserSettings objc = new UserSettings();
+            DefaultTableModel model = (DefaultTableModel) objc.jTable1.getModel();
+            model.setRowCount(0);
+            
+            while (rs.next()) {
+                Object[] row = new Object[3];
+                row[0] = rs.getString("username");
+                row[1] = rs.getString("role");
+                model.addRow(row);
+            }
+            
+            System.out.println("subject showing success");
+        } catch (SQLException e){
+            System.out.println("Subjects showing failed "+e);
+        }
           }
 }
