@@ -226,6 +226,8 @@ public class Dashboard extends javax.swing.JFrame {
         Resources reso = new Resources();
         reso.setVisible(true);
         //reso.toFront();
+        
+        
     }//GEN-LAST:event_jResourceActionPerformed
 
     private void jResourceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jResourceMouseClicked

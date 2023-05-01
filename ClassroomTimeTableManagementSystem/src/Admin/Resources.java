@@ -1,6 +1,7 @@
 package Admin;
 
 
+import classes.Resource;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 
@@ -66,6 +67,11 @@ public class Resources extends javax.swing.JFrame {
         jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "cls1", "cls2", "cls3", "cls4", "cls5" }));
         jComboBox1.setBorder(null);
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 170, 30));
 
         jTable1.setBackground(new java.awt.Color(38, 106, 169));
@@ -105,7 +111,7 @@ public class Resources extends javax.swing.JFrame {
                 {null, null}
             },
             new String [] {
-                "Item", "Qty"
+                "WhiteBoards", "Projectors"
             }
         ));
         jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
@@ -145,6 +151,11 @@ public class Resources extends javax.swing.JFrame {
         jButton3.setBorder(null);
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jButton3.setIconTextGap(7);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 160, 40));
 
         jButton1.setBackground(new java.awt.Color(237, 30, 121));
@@ -188,6 +199,27 @@ public class Resources extends javax.swing.JFrame {
         AddEditResources add = new AddEditResources();
         add.setVisible (true);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        
+        String class_selected = jComboBox1.getSelectedItem().toString();
+        
+        Resource obj = new Resource();
+        
+        obj.showResource(class_selected);
+        
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        
+        String class_selected = jComboBox1.getSelectedItem().toString();
+        
+        Resource obj = new Resource();
+        
+        obj.showResource(class_selected);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

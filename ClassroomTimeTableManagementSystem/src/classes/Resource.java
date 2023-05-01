@@ -35,44 +35,81 @@ public class Resource {
             JOptionPane.showMessageDialog(null, "Resource addition not successfull!");
         }
          
-        /**int totalResource = whiteNo + projNo;
         
-        try {
-            
-            ResultSet rowUp = st.executeQuery( " UPDATE resorces SET classroom=' "+classes+" ', resname=' "+projNo+" ' " ); 
-            JOptionPane.showMessageDialog(null, "Resource addition successfull!");
-            System.out.println("resource add done" + rowUp);
-        } catch ( SQLException ex ){
-            System.out.println(ex);
-            JOptionPane.showMessageDialog(null, "Resource addition not successfull!");
-        }**/
         
     }
      
-    /**public void showResource(){
+    public void showResource( String classSelected){
         
-        try {
-            Connection con = DataBaseConnection.getCon();
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT  FROM schedule");
-            
-            Resources objd = new Resources();
-            DefaultTableModel model = (DefaultTableModel) objd.jTable1.getModel();
-            model.setRowCount(0);
-            
-            while (rs.next()) {
-                Object[] row = new Object[3];
-                row[0] = rs.getInt("subid");
-                row[1] = rs.getString("subject");
-                row[2] = rs.getString("faculty");
-                model.addRow(row);
-            }
-            
-            System.out.println("subject showing success");
-        } catch (SQLException e){
-            System.out.println("Subjects showing failed "+e);
-        }
-
-    }**/
+         switch (classSelected) {
+             case "cls1" -> {
+                 try {
+                     Connection con = DataBaseConnection.getCon();
+                     Statement st = con.createStatement();
+                     ResultSet rs = st.executeQuery("SELECT whiteboards,projectors FROM classroom WHERE classname = "+classSelected+" ");
+                     
+                     Resources objd = new Resources();
+                     DefaultTableModel model = (DefaultTableModel) objd.jTable1.getModel();
+                     model.setRowCount(0);
+                     
+                     while (rs.next()) {
+                         Object[] row = new Object[3];
+                         row[0] = rs.getInt("whiteboards");
+                         row[1] = rs.getString("Projectors");
+                         model.addRow(row);
+                     }
+                     
+                     System.out.println("subject showing success");
+                 } catch (SQLException e){
+                     System.out.println("Subjects showing failed "+e);
+                 }
+             }
+             case "cls2" -> {
+                 try {
+                     Connection con = DataBaseConnection.getCon();
+                     Statement st = con.createStatement();
+                     ResultSet rs = st.executeQuery("SELECT whiteboards,projectors FROM classroom WHERE classname = "+classSelected+" ");
+                     
+                     Resources objd = new Resources();
+                     DefaultTableModel model = (DefaultTableModel) objd.jTable1.getModel();
+                     model.setRowCount(0);
+                     
+                     while (rs.next()) {
+                         Object[] row = new Object[3];
+                         row[0] = rs.getInt("whiteboards");
+                         row[1] = rs.getString("Projectors");
+                         model.addRow(row);
+                     }
+                     
+                     System.out.println("subject showing success");
+                 } catch (SQLException e){
+                     System.out.println("Subjects showing failed "+e);
+                 }
+             }
+             default -> {
+                 try {
+                     Connection con = DataBaseConnection.getCon();
+                     Statement st = con.createStatement();
+                     ResultSet rs = st.executeQuery("SELECT whiteboards,projectors FROM classroom WHERE classname = "+classSelected+" ");
+                     
+                     Resources objd = new Resources();
+                     DefaultTableModel model = (DefaultTableModel) objd.jTable1.getModel();
+                     model.setRowCount(0);
+                     
+                     while (rs.next()) {
+                         Object[] row = new Object[3];
+                         row[0] = rs.getInt("whiteboards");
+                         row[1] = rs.getString("Projectors");
+                         model.addRow(row);
+                     }
+                     
+                     System.out.println("subject showing success");
+                 } catch (SQLException e){
+                     System.out.println("Subjects showing failed "+e);
+                 }
+             }
+         }
+        
+    }
           
 }
