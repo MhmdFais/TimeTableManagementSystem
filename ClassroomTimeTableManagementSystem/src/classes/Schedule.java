@@ -20,14 +20,14 @@ import javax.swing.table.*;
 
 public class Schedule {
     
-    public boolean is_time_available ( int startTime , int endTime ){
+    public boolean is_time_available ( String startTime , String endTime ){
         
         try {
             Connection con = DataBaseConnection.getCon();
             Statement st = con.createStatement();
             
             // to check the availability of the time slot 
-            String query = ( " SELECT start, end FROM schedule WHERE start="+startTime+", end="+endTime+" " );
+            String query = ( " SELECT start, end FROM schedule WHERE start='"+startTime+"', end='"+endTime+"' " );
             ResultSet rs = st.executeQuery(query);
             // If the count is greater than 0, then there are conflicting bookings and the time slot is not available
             if (rs.next()) {
@@ -55,7 +55,7 @@ public class Schedule {
             Statement st = con.createStatement();
             
             // Check if the classroom is available for the given faculty
-            String query = ( " SELECT classname, faculty FROM schedule WHERE classname="+clasroom+", faculty="+faculty+" " );
+            String query = ( " SELECT classname, faculty FROM schedule WHERE classname='"+clasroom+"', faculty='"+faculty+"' " );
             ResultSet rs = st.executeQuery(query);
             if ( rs.next() ){
                int count = rs.getInt(1);
@@ -76,7 +76,7 @@ public class Schedule {
         
     } 
     
-    public boolean createSchedule ( String subCode, String subName, int seat, int startTime , int endTime,String clasroom , String faculty  ) {
+    public boolean createSchedule ( String subCode, String subName, int seat, String startTime , String endTime,String clasroom , String faculty  ) {
        
         if ( is_class_available( clasroom, faculty ) ){
             
@@ -88,7 +88,7 @@ public class Schedule {
                     
                     st.executeLargeUpdate( " INSERT INTO schedule ( classname, subject,"
                             + " faculty, classSize, start, end, subid ) "
-                            + " VALUES ("+clasroom+", "+subName+", "+faculty+", "+seat+", "+startTime+", "+endTime+", "+subCode+" ) " );
+                            + " VALUES ('"+clasroom+"', '"+subName+"', '"+faculty+"', '"+seat+"', '"+startTime+"', '"+endTime+"', '"+subCode+"' ) " );
                     
                     //JOptionPane.showMessageDialog(null, "Schedule added successfully!!");
                     System.out.println("Schedule adding successfull");
@@ -115,7 +115,7 @@ public class Schedule {
     }
     
     
-    public boolean delete ( String subCode, String subName, int seat, int startTime , int endTime,String clasroom , String faculty ){
+    public boolean delete ( String subCode, String subName, int seat, String startTime , String endTime,String clasroom , String faculty ){
         
         if ( is_class_available( clasroom, faculty ) ) {
             
@@ -229,7 +229,7 @@ public class Schedule {
     }
     
     
-    public boolean show ( String subCode, String subName, int seat, int startTime , int endTime,String clasroom , String faculty ){
+    public boolean show ( String subCode, String subName, int seat, String startTime , String endTime,String clasroom , String faculty ){
         
         if ( is_class_available( clasroom, faculty ) ) {
             

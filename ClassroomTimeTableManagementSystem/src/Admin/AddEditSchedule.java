@@ -82,7 +82,7 @@ public class AddEditSchedule extends javax.swing.JFrame {
 
         jComboBox2.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
         jComboBox2.setForeground(new java.awt.Color(64, 134, 200));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8.00AM", "10.00AM", "10.00AM", "12.00AM", "12.30AM", "2.30AM" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8.00AM", "10.00AM", "12.00AM", "12.30AM", "2.30AM" }));
         jComboBox2.setBorder(null);
         getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, 140, 30));
 
@@ -235,7 +235,7 @@ public class AddEditSchedule extends javax.swing.JFrame {
         int endtTime = Integer.parseInt(jComboBox3.getSelectedItem().toString());
         String subCode = jTextField1.getText();
         String subName = jTextField2.getText().toLowerCase();
-        int seat = ((Integer) jSpinner1.getValue());
+        int seat = ((Integer) jSpinQuan.getValue());
         
         Schedule obj = new Schedule();
         
@@ -267,14 +267,27 @@ public class AddEditSchedule extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         
+        String classroom = jComboBox1.getSelectedItem().toString();
+        String startTime = jComboBox2.getSelectedItem().toString();
+        String endtTime =jComboBox3.getSelectedItem().toString();
         String subCode = jTextField1.getText();
         String subName = jTextField2.getText().toLowerCase();
         String faculty = jTextField3.getText().toLowerCase();
+        int seat = ((Integer) jSpinQuan.getValue());
        
+        Schedule obja = new Schedule();
+        
+        boolean createSc = obja.createSchedule(subCode, subName, seat, startTime, endtTime, classroom, faculty);
+        
+        if (createSc){
+            JOptionPane.showMessageDialog(null, "Schedule added successfully!!");
+        }
+        else {
+            JOptionPane.showMessageDialog(null,"SQL Connection failed!");
+        }
+        
         
         Schedule obj = new Schedule();
-        
-        
         
         if ( subCode.isEmpty() ){
             JOptionPane.showMessageDialog(null, "Schedule cration failed");

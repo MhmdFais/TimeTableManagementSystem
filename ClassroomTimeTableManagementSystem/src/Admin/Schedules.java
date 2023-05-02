@@ -37,6 +37,8 @@ public class Schedules extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jButton4 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
@@ -48,6 +50,21 @@ public class Schedules extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(750, 500));
         setSize(new java.awt.Dimension(750, 500));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Start Time", "End Time", "Faculty", "Class Room", "Subject", "Subject Code"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 570, 300));
 
         jButton4.setBackground(new java.awt.Color(38, 106, 169));
         jButton4.setFont(new java.awt.Font("Poppins Medium", 0, 15)); // NOI18N
@@ -169,5 +186,7 @@ public class Schedules extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
