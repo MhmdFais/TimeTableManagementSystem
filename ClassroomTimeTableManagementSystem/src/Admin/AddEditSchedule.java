@@ -11,12 +11,12 @@ import classes.Schedule;
 import javax.swing.JOptionPane;
 
 
-public class AddEditSubjects extends javax.swing.JFrame {
+public class AddEditSchedule extends javax.swing.JFrame {
 
     /**
      * Creates new form UserSettings
      */
-    public AddEditSubjects() {
+    public AddEditSchedule() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -30,6 +30,14 @@ public class AddEditSubjects extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel10 = new javax.swing.JLabel();
+        jSpinQuan = new javax.swing.JSpinner();
+        jComboBox3 = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
@@ -49,6 +57,52 @@ public class AddEditSubjects extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(450, 650));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel10.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Seats");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 190, 20));
+
+        jSpinQuan.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
+        jSpinQuan.setBorder(null);
+        getContentPane().add(jSpinQuan, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 370, 140, 30));
+
+        jComboBox3.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
+        jComboBox3.setForeground(new java.awt.Color(64, 134, 200));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "10.00AM", "12.00AM", "2.00PM", "12.30AM", "2.30AM" }));
+        jComboBox3.setBorder(null);
+        getContentPane().add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 250, 140, 30));
+
+        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel9.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("End Time");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 190, 20));
+
+        jComboBox2.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
+        jComboBox2.setForeground(new java.awt.Color(64, 134, 200));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8.00AM", "10.00AM", "10.00AM", "12.00AM", "12.30AM", "2.30AM" }));
+        jComboBox2.setBorder(null);
+        getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, 140, 30));
+
+        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel8.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Start Time");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 190, 20));
+
+        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel6.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Classroom");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 190, 20));
+
+        jComboBox1.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
+        jComboBox1.setForeground(new java.awt.Color(64, 134, 200));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "cls1", "cls2", "cls3", "cls4", "cls5" }));
+        jComboBox1.setBorder(null);
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 140, 30));
 
         jButton5.setBackground(new java.awt.Color(38, 106, 169));
         jButton5.setFont(new java.awt.Font("Poppins Medium", 0, 15)); // NOI18N
@@ -84,7 +138,7 @@ public class AddEditSubjects extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Faculty ");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 190, 20));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 190, 20));
 
         jTextField3.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
         jTextField3.setForeground(new java.awt.Color(64, 134, 200));
@@ -94,29 +148,29 @@ public class AddEditSubjects extends javax.swing.JFrame {
                 jTextField3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, 140, 30));
+        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 140, 30));
 
         jTextField2.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(64, 134, 200));
         jTextField2.setBorder(null);
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 180, 140, 30));
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 330, 140, 30));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Subject Name");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 190, 20));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 190, 20));
 
         jTextField1.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(64, 134, 200));
         jTextField1.setBorder(null);
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 140, 30));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, 140, 30));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Subject Code");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 180, 20));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 180, 20));
 
         jButton4.setBackground(new java.awt.Color(38, 106, 169));
         jButton4.setFont(new java.awt.Font("Poppins Medium", 0, 15)); // NOI18N
@@ -150,7 +204,7 @@ public class AddEditSubjects extends javax.swing.JFrame {
         jLabel2.setBackground(new java.awt.Color(237, 30, 121));
         jLabel2.setFont(new java.awt.Font("Poppins Medium", 0, 30)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Add Subjects");
+        jLabel2.setText("Add Schedule");
         jLabel2.setAlignmentY(0.0F);
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 260, 60));
@@ -168,8 +222,8 @@ public class AddEditSubjects extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.toBack();
         setVisible(false);
-        new Classrooms().toFront();
-        new Classrooms().setState(java.awt.Frame.NORMAL);
+        new Schedules().toFront();
+        new Schedules().setState(java.awt.Frame.NORMAL);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -321,7 +375,7 @@ public class AddEditSubjects extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddEditSubjects().setVisible(true);
+                new AddEditSchedule().setVisible(true);
             }
         });
     }
@@ -331,11 +385,19 @@ public class AddEditSubjects extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JSpinner jSpinQuan;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;

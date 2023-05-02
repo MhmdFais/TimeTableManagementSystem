@@ -53,47 +53,54 @@ public class AddEditResources extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(450, 650));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jComboBox2.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
+        jComboBox2.setForeground(new java.awt.Color(64, 134, 200));
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "White Board", "Projectors", "Markers" }));
-        getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, 170, -1));
+        jComboBox2.setBorder(null);
+        getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, 170, 30));
 
+        jTextField1.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(64, 134, 200));
+        jTextField1.setBorder(null);
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 170, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, 170, 30));
 
+        jLabel3.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Faculty");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 120, 30));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 120, 30));
 
         jSpinQuan.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
         jSpinQuan.setBorder(null);
-        getContentPane().add(jSpinQuan, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, 170, 30));
+        getContentPane().add(jSpinQuan, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, 170, 30));
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Quantity");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 190, 20));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 190, 20));
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Type");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 190, 20));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 190, 20));
 
         jComboBox1.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
         jComboBox1.setForeground(new java.awt.Color(64, 134, 200));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "cls1", "cls2", "cls3", "cls4", "cls5" }));
         jComboBox1.setBorder(null);
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, 170, 30));
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, 170, 30));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Classroom");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 190, 20));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 190, 20));
 
         jAddRes.setBackground(new java.awt.Color(38, 106, 169));
         jAddRes.setFont(new java.awt.Font("Poppins Medium", 0, 15)); // NOI18N
@@ -141,8 +148,8 @@ public class AddEditResources extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.toBack();
         setVisible(false);
-        new UserSettings().toFront();
-        new UserSettings().setState(java.awt.Frame.NORMAL);
+        new Resources().toFront();
+        new Resources().setState(java.awt.Frame.NORMAL);
     }//GEN-LAST:event_jButton1ActionPerformed
 
           private void jAddResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAddResActionPerformed

@@ -56,7 +56,7 @@ public class Login extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setBackground(new java.awt.Color(237, 30, 121));
-        jButton1.setFont(new java.awt.Font("Poppins Light", 1, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Poppins Medium", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Login");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -67,7 +67,7 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, 120, 40));
 
         password.setBackground(new java.awt.Color(145, 184, 227));
-        password.setFont(new java.awt.Font("Poppins Light", 0, 18)); // NOI18N
+        password.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
         password.setForeground(new java.awt.Color(255, 255, 255));
         password.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         password.setActionCommand("<Not Set>");
@@ -75,7 +75,7 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, 170, 40));
 
         username.setBackground(new java.awt.Color(145, 184, 227));
-        username.setFont(new java.awt.Font("Poppins Light", 0, 18)); // NOI18N
+        username.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
         username.setForeground(new java.awt.Color(255, 255, 255));
         username.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         username.setBorder(null);

@@ -50,7 +50,10 @@ public class AddEditClassrooms extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(450, 650));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jComboBox1.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
+        jComboBox1.setForeground(new java.awt.Color(64, 134, 200));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "cls1", "cls2", "cls3", "cls4", "cls5" }));
+        jComboBox1.setBorder(null);
         getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 182, 140, 30));
 
         updclass.setBackground(new java.awt.Color(38, 106, 169));

@@ -181,6 +181,54 @@ public class Schedule {
         
     }
     
+    public boolean deleteSubject ( String subCode){
+        
+        try {
+            
+           Connection con = DataBaseConnection.getCon();
+           Statement st = con.createStatement();
+           
+           String delete = (" DELETE * FROM subjects WHERE subcode ='"+subCode+"' ");
+           st.executeUpdate(delete);
+           return true;
+            
+        } catch (SQLException e){
+            System.out.println("subject delete error" + e);
+            return false;
+        }
+        
+    }
+    
+    public boolean checkSubject ( String subCode ){
+        
+       try {
+           Connection con = DataBaseConnection.getCon();
+           Statement st = con.createStatement();
+           
+           ResultSet rs = st.executeQuery("SELECT subject, faculty FROM subjects WHERE subcode = '" + subCode + "'");
+           
+            if (rs.next()) {
+            
+                String subject = rs.getString(3);
+                String faculty = rs.getString(2);
+                
+                AddEditSubjects obj = new AddEditSubjects();
+                
+                obj.subDisplay(faculty, subject);
+                //return true;
+            } else {
+            // subject not found
+            return false;
+            }
+            return true;
+        } catch ( SQLException e ){
+           System.out.println("subject update failed" + e);
+           return false;
+        }
+        
+    }
+    
+    
     public boolean show ( String subCode, String subName, int seat, int startTime , int endTime,String clasroom , String faculty ){
         
         if ( is_class_available( clasroom, faculty ) ) {
@@ -199,10 +247,10 @@ public class Schedule {
                     AddEditSubjects obja = new AddEditSubjects();
                     
                     obja.display(sid, sname, seats);
-                    return true;
+                    //return true;
                 } catch ( SQLException ex){
                     System.out.println("update error"+ ex);
-                    return false;
+                    //return false;
                     //JOptionPane.showMessageDialog(null, "No class is not scheduled for this time");
                 }
             }
