@@ -203,7 +203,10 @@ public class UserSettings extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         AdminUserAdd obj = new AdminUserAdd();
-        obj.showUser();
+        UserSettings userSettings = new UserSettings();
+        obj.showUser(userSettings);
+        
+        //obj.showUser();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

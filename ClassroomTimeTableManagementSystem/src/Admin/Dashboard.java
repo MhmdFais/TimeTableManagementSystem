@@ -5,6 +5,8 @@ import classes.AdminUserAdd;
 import classes.Classroom;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import Login.java;
+import classes.Resource;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -213,13 +215,20 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         //close();
+        
+        AdminUserAdd obj = new AdminUserAdd();
+        UserSettings userSettings = new UserSettings();
+        obj.showUser(userSettings);
+        
         this.toBack();
         UserSettings user = new UserSettings();
         user.setVisible (true);     
         user.toFront();
         
-        AdminUserAdd obj = new AdminUserAdd();
-        obj.showUser();
+        //AdminUserAdd obj = new AdminUserAdd();
+        //obj.showUser();
+        
+        
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jResourceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jResourceActionPerformed
@@ -227,6 +236,11 @@ public class Dashboard extends javax.swing.JFrame {
         reso.setVisible(true);
         //reso.toFront();
         
+        Resources obj = new Resources();
+        String classSelected = obj.jComboBox1.getSelectedItem().toString().toLowerCase();
+        
+        Resource obja = new Resource();
+        obja.showResource(classSelected);
         
     }//GEN-LAST:event_jResourceActionPerformed
 
@@ -252,6 +266,7 @@ public class Dashboard extends javax.swing.JFrame {
           private void jSignoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSignoutActionPerformed
                     // TODO add your handling code here:
                     
+                    //Login obj = new Login();
                     
                     
           }//GEN-LAST:event_jSignoutActionPerformed

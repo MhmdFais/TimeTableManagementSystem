@@ -167,38 +167,41 @@ public class AddEditClassrooms extends javax.swing.JFrame {
 
     private void updclassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updclassActionPerformed
         // TODO add your handling code here:
-        String faculty = jTextField1.getText();
-        String classroom = jComboBox1.getSelectedItem().toString();
+        String faculty = jTextField1.getText().toLowerCase();
+        String classroom = jComboBox1.getSelectedItem().toString().toLowerCase();
         String capacity = jTextField3.getText();
+        int capacityInt = Integer.parseInt(capacity);
         
-        Classroom obj = new Classroom(faculty,classroom,capacity);
+        Classroom obj = new Classroom(faculty,classroom,capacityInt);
         
-        obj.upd();
+        obj.upd(faculty,classroom,capacityInt);
         
         
     }//GEN-LAST:event_updclassActionPerformed
 
     private void addclassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addclassActionPerformed
         // TODO add your handling code here:
-        String faculty = jTextField1.getText();
-        String classroom = jComboBox1.getSelectedItem().toString();
+        String faculty = jTextField1.getText().toLowerCase();
+        String classroom = jComboBox1.getSelectedItem().toString().toLowerCase();
         String capacity = jTextField3.getText();
+        int capacityInt = Integer.parseInt(capacity);
         
-        Classroom obj = new Classroom(faculty,classroom,capacity);
+        Classroom obj = new Classroom(faculty,classroom,capacityInt);
         
-        obj.sub();
+        obj.sub(faculty,classroom,capacityInt);
         
     }//GEN-LAST:event_addclassActionPerformed
 
     private void delclassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delclassActionPerformed
         // TODO add your handling code here:
-        String faculty = jTextField1.getText();
-        String classroom = jComboBox1.getSelectedItem().toString();
+        String faculty = jTextField1.getText().toLowerCase();
+        String classroom = jComboBox1.getSelectedItem().toString().toLowerCase();
         String capacity = jTextField3.getText();
+        int capacityInt = Integer.parseInt(capacity);
         
-        Classroom obj = new Classroom(faculty,classroom,capacity);
+        Classroom obj = new Classroom(faculty,classroom,capacityInt);
         
-        obj.del();
+        obj.del(faculty,classroom,capacityInt);
     }//GEN-LAST:event_delclassActionPerformed
 
     /**

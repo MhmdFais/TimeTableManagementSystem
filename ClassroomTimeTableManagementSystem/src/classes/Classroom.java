@@ -19,29 +19,29 @@ public class Classroom {
    private String classroom;
    private int capacity;
 
-    public Classroom(String faculty, String classroom, String capacity) {
+    public Classroom(String faculty, String classroom, int capacity) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     public Classroom() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-     public void sub(){
+     public void sub(String faculty, String classroom, int capacity){
                     
                     try {
                               Connection con = DataBaseConnection.getCon();
                               Statement st = con.createStatement();
-                              st.executeUpdate( " INSERT INTO classroom (faculty, classroom, capacity)  VALUES ( ' "+faculty+" ', ' "+classroom+" ', ' "+capacity+" '  )"  );
+                              st.executeUpdate( " INSERT INTO classroom (classroom, faculty, capacity)  VALUES ( ' "+classroom+" ',' "+faculty+" ', ' "+capacity+" '  )"  );
                               JOptionPane.showMessageDialog(null, "Successfull info addition!");
                               System.out.println("Successfull info addition");
                     } catch ( SQLException e ) {
                               JOptionPane.showMessageDialog(null, "Info addition failed !");
                               System.out.println(e);
                     }
-                    DataBaseConnection.closeCon();
+                    //DataBaseConnection.closeCon();
           }
 
-    public void del() {
+    public void del(String faculty, String classroom, int capacity) {
           try {
                       Connection con = DataBaseConnection.getCon();
                       Statement st;
@@ -53,10 +53,10 @@ public class Classroom {
                               JOptionPane.showMessageDialog(null, "Action failed !");
                               System.out.println(ex);
                     }
-                    DataBaseConnection.closeCon();   
+                    //DataBaseConnection.closeCon();   
     }
     
-     public void upd() {
+     public void upd(String faculty, String classroom, int capacity) {
                       
           try {      
                       Connection con = DataBaseConnection.getCon();
@@ -69,7 +69,7 @@ public class Classroom {
                               JOptionPane.showMessageDialog(null, "Action failed !");
                               System.out.println(ex);
                     }
-                    DataBaseConnection.closeCon();   
+                    //DataBaseConnection.closeCon();   
     }
     
      
@@ -79,7 +79,7 @@ public class Classroom {
          try {
             Connection con = DataBaseConnection.getCon();
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT faculty,classname,capacity,whiteboards,projectors FROM classroom");
+            ResultSet rs = st.executeQuery("SELECT faculty,classname,capacity FROM classroom");
             
             Classrooms obja = new Classrooms();
             DefaultTableModel model = (DefaultTableModel) obja.jTable1.getModel();
@@ -90,8 +90,6 @@ public class Classroom {
                 row[0] = rs.getString("faculty");
                 row[1] = rs.getString("classname");
                 row[2] = rs.getString("capacity");
-                row[3] = rs.getInt("whiteboards");
-                row[4] = rs.getInt("projectors");
                 model.addRow(row);
             }
             

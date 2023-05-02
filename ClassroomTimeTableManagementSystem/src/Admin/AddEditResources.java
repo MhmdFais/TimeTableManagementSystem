@@ -33,7 +33,7 @@ public class AddEditResources extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jSpinner1 = new javax.swing.JSpinner();
+        jComboBox2 = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jSpinQuan = new javax.swing.JSpinner();
@@ -52,7 +52,9 @@ public class AddEditResources extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(450, 650));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, 170, -1));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "White Board", "Projectors", "Markers" }));
+        getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, 170, -1));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,13 +74,13 @@ public class AddEditResources extends javax.swing.JFrame {
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Projectors");
+        jLabel8.setText("Quantity");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 190, 20));
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Poppins SemiBold", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("White Boards");
+        jLabel7.setText("Type");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 190, 20));
 
         jComboBox1.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
@@ -147,14 +149,14 @@ public class AddEditResources extends javax.swing.JFrame {
                     // TODO add your handling code here:
                     
                     String faculty = jTextField1.getText().toLowerCase();
-                    String classroom = jComboBox1.getSelectedItem().toString();
-                    int whiteQuan = ((Integer) jSpinner1.getValue()); 
+                    String classroom = jComboBox1.getSelectedItem().toString().toLowerCase();
+                    String type = jComboBox2.getSelectedItem().toString().toLowerCase();
                     int projQun = ((Integer) jSpinQuan.getValue());
                     
                     Resource obj = new Resource();
                     
         try {
-            obj.add(classroom, faculty, whiteQuan, projQun);
+            obj.add(classroom, faculty,type, projQun);
         } catch (SQLException ex) {
             Logger.getLogger(AddEditResources.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -204,6 +206,7 @@ public class AddEditResources extends javax.swing.JFrame {
     private javax.swing.JButton jAddRes;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -211,7 +214,6 @@ public class AddEditResources extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JSpinner jSpinQuan;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

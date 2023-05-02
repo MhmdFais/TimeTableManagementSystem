@@ -29,22 +29,24 @@ public class AdminUserAdd {
                                                 Connection con = DataBaseConnection.getCon();
                                                 Statement st = con.createStatement();
                                                 
-                                                ResultSet rs = st.executeQuery("SELECT * FROM users WHERE username = ' " + username + " ' ");
+                                                ResultSet rs = st.executeQuery("SELECT * FROM admin WHERE username = ' " + username + " ' ");
                                                 if (rs.next()) {
                                                           JOptionPane.showMessageDialog(null, "Username already exists");
                                                           return false;
                                                 }
                                                 
                                                 
-                                                st.executeUpdate( " INSERT INTO users ( username, password, role ) VALUES ( ' "+username+" ' ,' "+password+" ' ,' "+type+" ' ) "  );
+                                                st.executeUpdate( " INSERT INTO admin ( username, password, role ) VALUES ( ' "+username+" ' ,' "+password+" ' ,' "+type+" ' ) "  );
                                                 JOptionPane.showMessageDialog(null, "User added successfully!");
+                                                
+                                                
                                                 return true;
                                       } catch ( SQLException e ) {
                                                 JOptionPane.showMessageDialog(null, "User adding failed!! + sql exception" ); 
                                                 System.out.println(e);
                                                 return false;
                                       } finally {
-                                                DataBaseConnection.closeCon();
+                                                //DataBaseConnection.closeCon();
                                       }
                             } else {
                                       JOptionPane.showMessageDialog(null, "Check whether the passwords are correct"); 
@@ -67,7 +69,7 @@ public class AdminUserAdd {
                     
                     try {
                               // checking whether the entered username already there
-                              String query = "SELECT * FROM users WHERE username = ' " + username + "' ";
+                              String query = "SELECT * FROM admin WHERE username = ' " + username + "' ";
                               ResultSet rs = st.executeQuery(query);
                               
                               if ( !rs.next() ){
@@ -77,8 +79,9 @@ public class AdminUserAdd {
                               
                               // deleting the user
                               try {
-                                        String deleteUser = " DELETE FROM users WHERE username = ' "+username+" '  ";
+                                        String deleteUser = " DELETE FROM admin WHERE username = ' "+username+" '  ";
                                         st.executeUpdate(deleteUser);
+                                        JOptionPane.showMessageDialog(null, "User Removed Successfully !!");
                               } catch ( SQLException e ){
                                         JOptionPane.showMessageDialog(null, "Error while deleting !!");
                               }
@@ -106,16 +109,16 @@ public class AdminUserAdd {
           }
      
         
-          public void showUser(){
+        public void showUser( UserSettings userSettings ){
               
               try {
             Connection con = DataBaseConnection.getCon();
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT username, role FROM users");
+            ResultSet rs = st.executeQuery("SELECT username, role FROM admin");
             
-            UserSettings objc = new UserSettings();
-            DefaultTableModel model = (DefaultTableModel) objc.jTable1.getModel();
-            model.setRowCount(0);
+            //UserSettings objc = new UserSettings();
+            DefaultTableModel model = (DefaultTableModel) userSettings.jTable1.getModel();
+            model.setRowCount(10);
             
             while (rs.next()) {
                 Object[] row = new Object[3];
@@ -124,9 +127,13 @@ public class AdminUserAdd {
                 model.addRow(row);
             }
             
+            userSettings.jTable1.validate();
+            userSettings.jTable1.repaint();
+            
             System.out.println("subject showing success");
-        } catch (SQLException e){
-            System.out.println("Subjects showing failed "+e);
+            
+            } catch (SQLException e){
+                System.out.println("Subjects showing failed "+e);
+            }
         }
-          }
 }

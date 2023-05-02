@@ -54,7 +54,7 @@ public class WelcomeScreen extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(52, 60, 201));
         jLabel5.setText("Group 11");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(660, 430, 60, 19);
+        jLabel5.setBounds(660, 430, 60, 16);
 
         jButton2.setBackground(new java.awt.Color(237, 30, 121));
         jButton2.setFont(new java.awt.Font("Poppins SemiBold", 1, 18)); // NOI18N
@@ -75,7 +75,7 @@ public class WelcomeScreen extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("MANAGEMENT SYSTEM");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(200, 200, 360, 46);
+        jLabel4.setBounds(200, 200, 360, 39);
 
         jLabel3.setFont(new java.awt.Font("Poppins ExtraBold", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -100,7 +100,7 @@ public class WelcomeScreen extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(300, 110, 160, 37);
+        jLabel1.setBounds(300, 110, 160, 32);
 
         jLabel2.setBackground(new java.awt.Color(64, 134, 200));
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));

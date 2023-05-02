@@ -164,6 +164,23 @@ public class Schedule {
         
     }
     
+    public boolean addSubject( String faculty, String subject, String subCode ){
+        
+        try {
+            
+            Connection con = DataBaseConnection.getCon();
+            Statement st = con.createStatement(); 
+            
+            st.executeUpdate(" INSERT INTO subjects (faculty,subject,subcode) VALUES ('"+faculty+"','"+subject+"','"+subCode+"') ");
+            return true;
+            
+        } catch (SQLException e){
+            System.out.println("subject adding failed "+e);
+            return false;
+        }
+        
+    }
+    
     public boolean show ( String subCode, String subName, int seat, int startTime , int endTime,String clasroom , String faculty ){
         
         if ( is_class_available( clasroom, faculty ) ) {

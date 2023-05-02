@@ -18,19 +18,19 @@ import java.sql.DriverManager;
  * @author Muhammed
  */
 public class DataBaseConnection {
-          static com.mysql.jdbc.Connection connection()
-             {
+        static com.mysql.jdbc.Connection getCon(){
+            
         try
         {
             Class.forName("com.mysql.jdbc.Driver");
             com.mysql.jdbc.Connection con = (com.mysql.jdbc.Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/school", "root", "");
             return con;
         }
-        catch(Exception e)
+        catch(ClassNotFoundException | SQLException e)
         {
             System.out.println(e);
             return null;
         }
     }
-             
+              
 }

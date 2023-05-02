@@ -19,34 +19,29 @@ import javax.swing.table.*;
 
 public class Resource {
     
-     public void add( String classes, String faculty, int whiteNo, int projNo ) throws SQLException{
+     public void add( String classes, String faculty, String type, int projNo ) throws SQLException{
          
         Connection con = DataBaseConnection.getCon();
         Statement st = con.createStatement();
               
         try {
-            
-            
-            ResultSet rowUp = st.executeQuery( " UPDATE classroom SET whiteboards=' "+whiteNo+" ', projectors=' "+projNo+" ' WHERE classname=' "+classes+" ',faculty =' "+faculty+" ' " ); 
+            st.executeUpdate(" INSERT INTO resources (faculty, classroom, type, quantity) VALUES ('"+faculty+"','"+classes+"','"+type+"','"+projNo+"')");
             JOptionPane.showMessageDialog(null, "Resource addition successfull!");
-            System.out.println("resource add done" + rowUp);
+            //System.out.println("resource add done" + rowUp);
         } catch ( SQLException ex ){
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Resource addition not successfull!");
-        }
-         
-        
-        
+        } 
     }
      
     public void showResource( String classSelected){
         
          switch (classSelected) {
              case "cls1" -> {
-                 try {
+                 try { 
                      Connection con = DataBaseConnection.getCon();
                      Statement st = con.createStatement();
-                     ResultSet rs = st.executeQuery("SELECT whiteboards,projectors FROM classroom WHERE classname = "+classSelected+" ");
+                     ResultSet rs = st.executeQuery("SELECT type, quantity FROM resources WHERE classroom = '"+classSelected+"' ");
                      
                      Resources objd = new Resources();
                      DefaultTableModel model = (DefaultTableModel) objd.jTable1.getModel();
@@ -54,8 +49,8 @@ public class Resource {
                      
                      while (rs.next()) {
                          Object[] row = new Object[3];
-                         row[0] = rs.getInt("whiteboards");
-                         row[1] = rs.getString("Projectors");
+                         row[0] = rs.getString("type");
+                         row[1] = rs.getInt("quantity");
                          model.addRow(row);
                      }
                      
@@ -68,7 +63,7 @@ public class Resource {
                  try {
                      Connection con = DataBaseConnection.getCon();
                      Statement st = con.createStatement();
-                     ResultSet rs = st.executeQuery("SELECT whiteboards,projectors FROM classroom WHERE classname = "+classSelected+" ");
+                     ResultSet rs = st.executeQuery("SELECT type, quantity FROM resources WHERE classroom = '"+classSelected+"' ");
                      
                      Resources objd = new Resources();
                      DefaultTableModel model = (DefaultTableModel) objd.jTable1.getModel();
@@ -76,8 +71,8 @@ public class Resource {
                      
                      while (rs.next()) {
                          Object[] row = new Object[3];
-                         row[0] = rs.getInt("whiteboards");
-                         row[1] = rs.getString("Projectors");
+                         row[0] = rs.getString("type");
+                         row[1] = rs.getInt("quantity");
                          model.addRow(row);
                      }
                      
@@ -90,7 +85,10 @@ public class Resource {
                  try {
                      Connection con = DataBaseConnection.getCon();
                      Statement st = con.createStatement();
-                     ResultSet rs = st.executeQuery("SELECT whiteboards,projectors FROM classroom WHERE classname = "+classSelected+" ");
+                     ResultSet rs = st.executeQuery("SELECT type, quantity FROM resources WHERE classroom = '"+classSelected+"' ");
+                     
+                     
+                     //view.setModel(DbUtils.resultSetToTableModel(re))
                      
                      Resources objd = new Resources();
                      DefaultTableModel model = (DefaultTableModel) objd.jTable1.getModel();
@@ -98,8 +96,8 @@ public class Resource {
                      
                      while (rs.next()) {
                          Object[] row = new Object[3];
-                         row[0] = rs.getInt("whiteboards");
-                         row[1] = rs.getString("Projectors");
+                         row[0] = rs.getString("type");
+                         row[1] = rs.getInt("quantity");
                          model.addRow(row);
                      }
                      

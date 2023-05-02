@@ -108,7 +108,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       try
+       /**try
         {
             stmt = con.createStatement();
             
@@ -130,14 +130,32 @@ public class Login extends javax.swing.JFrame {
                 else
                 {
                     JOptionPane.showMessageDialog(null, "Incorrect USERNAME or PASSWORD");
-                    System.out.println("Incorrect USERNAME or PASSWORD");
+                    //System.out.println("Incorrect USERNAME or PASSWORD");
                 }
             }
         }
         catch(SQLException e)
         {
             System.out.println(e);
+        }**/
+       
+       String Username = username.getText();
+       String Password = password.getText();
+       
+       User obj = new User();
+        
+        try {
+            if (  obj.login(Username, Password) ){
+                setVisible(false);
+                Dashboard view = new Dashboard();
+                view.setVisible(true);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Incorrect USERNAME or PASSWORD");
+            }} catch (SQLException ex) {
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
