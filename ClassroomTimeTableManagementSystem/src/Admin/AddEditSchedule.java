@@ -239,30 +239,30 @@ public class AddEditSchedule extends javax.swing.JFrame {
         
         Schedule obj = new Schedule();
         
-        boolean show = obj.show(subCode, subName, seat, startTime, endtTime, classroom, faculty);
+        //boolean show = obj.show(subCode, subName, seat, startTime, endtTime, classroom, faculty);
         
-        if ( show ){
-            obj.update(subCode, subName, seat);
-        }
+        //if ( show ){
+          //  obj.update(subCode, subName, seat);
+        //}
         
         
         
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    public void display ( String subCode, String subName, int seat ) {
+    /**public void display ( String subCode, String subName, int seat ) {
         
         jTextField1.setText(subCode);
         jTextField2.setText(subName);
-        jSpinner1.setValue(seat);
+        Spinner1.setValue(seat);
         
-    }
+    }**/
     
-    public void subDisplay ( String faculty, String subject ){
+   /** public void subDisplay ( String faculty, String subject ){
         
         jTextField3.setText(faculty);
         jTextField2.setText(subject);
         
-    }
+    }**/
     
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
@@ -287,7 +287,7 @@ public class AddEditSchedule extends javax.swing.JFrame {
         }
         
         
-        Schedule obj = new Schedule();
+        /**Schedule obj = new Schedule();
         
         if ( subCode.isEmpty() ){
             JOptionPane.showMessageDialog(null, "Schedule cration failed");
@@ -302,12 +302,12 @@ public class AddEditSchedule extends javax.swing.JFrame {
              boolean create = obj.addSubject(faculty, subName, subCode);
             
              if ( create ){
-                JOptionPane.showMessageDialog(null, "Subject added successfully!!"); 
+                JOptionPane.showMessageDialog(null, "Scedule added successfully!!"); 
             }
             else {
                 JOptionPane.showMessageDialog(null, "Schedule cration failed");
             }
-        } 
+        }**/
        
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -316,18 +316,18 @@ public class AddEditSchedule extends javax.swing.JFrame {
         String subCode = jTextField1.getText();
         String subName = jTextField2.getText().toLowerCase();
         String faculty = jTextField3.getText().toLowerCase();
-        int seat = ((Integer) jSpinner1.getValue());
+        int seat = ((Integer) jSpinQuan.getValue());
         String classroom = jComboBox2.getSelectedItem().toString();
         int startTime = Integer.parseInt(jComboBox1.getSelectedItem().toString());
         int endtTime = Integer.parseInt(jComboBox3.getSelectedItem().toString());
         
         Schedule obj = new Schedule();
         
-        boolean show = obj.show(subCode, subName, seat, startTime, endtTime, classroom, faculty);
+        boolean show = obj.show(subCode, subName, seat, subName, subName, classroom, faculty);
         
         if ( show ) {
             
-            boolean delete = obj.delete(subCode, subName, seat, startTime, endtTime, classroom, faculty);
+            boolean delete = obj.delete(subCode, subName, seat, subName, subName, classroom, faculty);
         
             if ( delete ){
                     JOptionPane.showMessageDialog(null, "Deleted successfully! ");

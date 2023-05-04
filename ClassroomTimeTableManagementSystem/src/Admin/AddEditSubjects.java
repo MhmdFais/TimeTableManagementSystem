@@ -220,28 +220,13 @@ public class AddEditSubjects extends javax.swing.JFrame {
         
         Schedule obj = new Schedule();
         
+        if ( obj.addSubject(faculty, subName, subCode)){
+            JOptionPane.showMessageDialog(null, "Subject creation successfull");
+        } else {
+            JOptionPane.showMessageDialog(null, "Subject creation failed");
+        }
         
         
-        if ( subCode.isEmpty() ){
-            JOptionPane.showMessageDialog(null, "Schedule cration failed");
-        }
-        else if ( subName.isEmpty() ) {
-            JOptionPane.showMessageDialog(null, "Schedule cration failed");
-        }
-        else if ( faculty.isEmpty() ) {
-            JOptionPane.showMessageDialog(null, "Schedule cration failed");
-        }
-        else {
-             boolean create = obj.addSubject(faculty, subName, subCode);
-            
-             if ( create ){
-                JOptionPane.showMessageDialog(null, "Subject added successfully!!"); 
-            }
-            else {
-                JOptionPane.showMessageDialog(null, "Schedule cration failed");
-            }
-        } 
-       
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed

@@ -27,7 +27,7 @@ public class Schedule {
             Statement st = con.createStatement();
             
             // to check the availability of the time slot 
-            String query = ( " SELECT start, end FROM schedule WHERE start='"+startTime+"', end='"+endTime+"' " );
+            String query = ( " SELECT start, end FROM schedule WHERE start='"+startTime+"'AND end='"+endTime+"' " );
             ResultSet rs = st.executeQuery(query);
             // If the count is greater than 0, then there are conflicting bookings and the time slot is not available
             if (rs.next()) {
@@ -55,7 +55,7 @@ public class Schedule {
             Statement st = con.createStatement();
             
             // Check if the classroom is available for the given faculty
-            String query = ( " SELECT classname, faculty FROM schedule WHERE classname='"+clasroom+"', faculty='"+faculty+"' " );
+            String query = ( " SELECT classname, faculty FROM schedule WHERE classname='"+clasroom+"' AND faculty='"+faculty+"' " );
             ResultSet rs = st.executeQuery(query);
             if ( rs.next() ){
                int count = rs.getInt(1);
@@ -86,7 +86,7 @@ public class Schedule {
                     Connection con = DataBaseConnection.getCon();
                     Statement st = con.createStatement();
                     
-                    st.executeLargeUpdate( " INSERT INTO schedule ( classname, subject,"
+                    st.executeUpdate( " INSERT INTO schedule ( classname, subject,"
                             + " faculty, classSize, start, end, subid ) "
                             + " VALUES ('"+clasroom+"', '"+subName+"', '"+faculty+"', '"+seat+"', '"+startTime+"', '"+endTime+"', '"+subCode+"' ) " );
                     
@@ -239,7 +239,9 @@ public class Schedule {
                     Connection con = DataBaseConnection.getCon();
                     Statement st = con.createStatement(); 
                     
-                    ResultSet rs = st.executeQuery(" SELECT * FROM schedule ");
+                    //st.executeUpdate("UPDATE schedule SET subCode='" + subCode + "', subName='" + subName + "', seat=" + seat + ", startTime='" + startTime + "', endTime='" + endTime + "', classroom='" + clasroom + "', faculty='" + faculty + "' WHERE id=" + sid);
+                    
+                    ResultSet rs = st.executeQuery(" SELECT * FROM schedule classroom='" + clasroom + "' AND faculty='" + faculty + "' AND start='" + startTime + "' AND end='" + endTime + "' ");
                     String sid = rs.getString(8);
                     String sname = rs.getString(3);
                     int seats = rs.getInt(5);
@@ -247,10 +249,10 @@ public class Schedule {
                     AddEditSubjects obja = new AddEditSubjects();
                     
                     obja.display(sid, sname, seats);
-                    //return true;
+                    return true;
                 } catch ( SQLException ex){
                     System.out.println("update error"+ ex);
-                    //return false;
+                    return false;
                     //JOptionPane.showMessageDialog(null, "No class is not scheduled for this time");
                 }
             }
