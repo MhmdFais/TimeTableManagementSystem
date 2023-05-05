@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/javaProjNet/project_update/TimeTableManagementSystem/ClassroomTimeTableManagementSystem/src/Admin/Schedules.java</file>
+            <file>file:/D:/javaProjNet/project_update/TimeTableManagementSystem/ClassroomTimeTableManagementSystem/src/classes/Schedule.java</file>
+            <file>file:/D:/javaProjNet/project_update/TimeTableManagementSystem/ClassroomTimeTableManagementSystem/src/classes/Classroom.java</file>
+            <file>file:/D:/javaProjNet/project_update/TimeTableManagementSystem/ClassroomTimeTableManagementSystem/src/Admin/Dashboard.java</file>
+            <file>file:/D:/javaProjNet/project_update/TimeTableManagementSystem/ClassroomTimeTableManagementSystem/src/Admin/AddEditSubjects.java</file>
+            <file>file:/D:/javaProjNet/project_update/TimeTableManagementSystem/ClassroomTimeTableManagementSystem/src/Admin/AddEditSchedule.java</file>
+        </group>
     </open-files>
 </project-private>

@@ -188,7 +188,7 @@ public class Schedule {
            Connection con = DataBaseConnection.getCon();
            Statement st = con.createStatement();
            
-           String delete = (" DELETE * FROM subjects WHERE subcode ='"+subCode+"' ");
+           String delete = (" DELETE FROM subjects WHERE subcode ='"+subCode+"' ");
            st.executeUpdate(delete);
            return true;
             
@@ -205,7 +205,7 @@ public class Schedule {
            Connection con = DataBaseConnection.getCon();
            Statement st = con.createStatement();
            
-           ResultSet rs = st.executeQuery("SELECT subject, faculty FROM subjects WHERE subcode = '" + subCode + "'");
+           ResultSet rs = st.executeQuery("SELECT subject, faculty, subcode FROM subjects WHERE subcode = '" + subCode + "'");
            
             if (rs.next()) {
             

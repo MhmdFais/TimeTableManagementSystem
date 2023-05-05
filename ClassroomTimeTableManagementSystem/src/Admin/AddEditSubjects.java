@@ -110,6 +110,11 @@ public class AddEditSubjects extends javax.swing.JFrame {
         jTextField1.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(64, 134, 200));
         jTextField1.setBorder(null);
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 140, 30));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -175,23 +180,13 @@ public class AddEditSubjects extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
        
-        String faculty = jTextField3.getText().toLowerCase();
-        String classroom = jComboBox2.getSelectedItem().toString();
-        int startTime = Integer.parseInt(jComboBox1.getSelectedItem().toString());
-        int endtTime = Integer.parseInt(jComboBox3.getSelectedItem().toString());
         String subCode = jTextField1.getText();
         String subName = jTextField2.getText().toLowerCase();
-        int seat = ((Integer) jSpinner1.getValue());
+        String faculty = jTextField3.getText().toLowerCase();
         
         Schedule obj = new Schedule();
         
-        boolean show = obj.show(subCode, subName, seat, startTime, endtTime, classroom, faculty);
-        
-        if ( show ){
-            obj.update(subCode, subName, seat);
-        }
-        
-        
+        obj.addSubject(faculty, subName, subCode);
         
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -234,46 +229,35 @@ public class AddEditSubjects extends javax.swing.JFrame {
         String subCode = jTextField1.getText();
         String subName = jTextField2.getText().toLowerCase();
         String faculty = jTextField3.getText().toLowerCase();
-        int seat = ((Integer) jSpinner1.getValue());
-        String classroom = jComboBox2.getSelectedItem().toString();
-        int startTime = Integer.parseInt(jComboBox1.getSelectedItem().toString());
-        int endtTime = Integer.parseInt(jComboBox3.getSelectedItem().toString());
-        
+      
         Schedule obj = new Schedule();
         
-        boolean show = obj.show(subCode, subName, seat, startTime, endtTime, classroom, faculty);
-        
-        if ( show ) {
-            
-            boolean delete = obj.delete(subCode, subName, seat, startTime, endtTime, classroom, faculty);
-        
-            if ( delete ){
-                    JOptionPane.showMessageDialog(null, "Deleted successfully! ");
-            } 
-            else {
-                    JOptionPane.showMessageDialog(null, "Deleting failed!"); 
-            }
-            
+        if ( obj.checkSubject(subCode) ){
+            obj.deleteSubject(subCode);
+            JOptionPane.showMessageDialog(null, "Subject deleted successfully");
+            jTextField1.setText("");
+            jTextField2.setText("");
+            jTextField3.setText("");
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Subject deletion failed");
         }
         
-        //SUBJECTS
-        
-        String subCodes = jTextField1.getText().toLowerCase();
-        
-        if ( obj.checkSubject(subCodes)){
-            
-            if ( obj.deleteSubject(subCode) ){
-                JOptionPane.showMessageDialog(null, "Deletion Successfull!!");
-            }
-            
-        } else {
-            JOptionPane.showMessageDialog(null, "Deletion Successfull!!");
-        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+        String subcode = jTextField1.getText();
+        
+        Schedule obj = new Schedule();
+        
+        obj.checkSubject(subcode);
+        
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments

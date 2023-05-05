@@ -239,6 +239,8 @@ public class AddEditSchedule extends javax.swing.JFrame {
         
         Schedule obj = new Schedule();
         
+        obj.createSchedule(subCode, subName, seat, subName, subName, classroom, faculty);
+        
         //boolean show = obj.show(subCode, subName, seat, startTime, endtTime, classroom, faculty);
         
         //if ( show ){
@@ -340,7 +342,7 @@ public class AddEditSchedule extends javax.swing.JFrame {
         
         //SUBJECTS
         
-        String subCodes = jTextField1.getText().toLowerCase();
+        /**String subCodes = jTextField1.getText().toLowerCase();
         
         if ( obj.checkSubject(subCodes)){
             
@@ -350,7 +352,7 @@ public class AddEditSchedule extends javax.swing.JFrame {
             
         } else {
             JOptionPane.showMessageDialog(null, "Deletion Successfull!!");
-        }
+        }**/
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
