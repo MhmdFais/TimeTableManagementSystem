@@ -189,9 +189,9 @@ public class AddEditClassrooms extends javax.swing.JFrame {
         String capacity = jTextField3.getText();
         int capacityInt = Integer.parseInt(capacity);
         
-        Classroom obj = new Classroom(faculty,classroom,capacityInt);
+        Classroom obj = new Classroom();
         
-        obj.sub(faculty,classroom,capacityInt);
+        obj.sub(faculty, classroom, capacityInt);
         
     }//GEN-LAST:event_addclassActionPerformed
 

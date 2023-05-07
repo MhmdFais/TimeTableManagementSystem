@@ -11,10 +11,13 @@ package classes;
 import Admin.Classrooms;
 import java.sql.*;
 import java.sql.Connection;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.table.*;
 
-public class Classroom {
+public class Classroom extends JFrame{
    private String faculty;
    private String classroom;
    private int capacity;
@@ -26,6 +29,7 @@ public class Classroom {
     public Classroom() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+    
      public void sub(String faculty, String classroom, int capacity){
                     
                     try {
@@ -34,12 +38,13 @@ public class Classroom {
                               st.executeUpdate( " INSERT INTO classroom (classroom, faculty, capacity)  VALUES ( ' "+classroom+" ',' "+faculty+" ', ' "+capacity+" '  )"  );
                               JOptionPane.showMessageDialog(null, "Successfull info addition!");
                               System.out.println("Successfull info addition");
+                              JOptionPane.showMessageDialog(null, "Info addition successful !");
                     } catch ( SQLException e ) {
                               JOptionPane.showMessageDialog(null, "Info addition failed !");
-                              System.out.println(e);
+                              System.out.println("error " + e);
                     }
                     //DataBaseConnection.closeCon();
-          }
+     }
 
     public void del(String faculty, String classroom, int capacity) {
           try {
@@ -75,7 +80,7 @@ public class Classroom {
      
     // Muhammed
      
-     public void showClassroom(){
+    /**public void showClassroom(){
          try {
             Connection con = DataBaseConnection.getCon();
             Statement st = con.createStatement();
@@ -97,6 +102,60 @@ public class Classroom {
         } catch (SQLException e){
             System.out.println("Subjects showing failed "+e);
         }
-     }
+    }**/
+     
+    public void showClassroom(){
+        
+        JTable table;
+        DefaultTableModel tableModel;
+        
+        
+        //super("Classrooms");
+        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //setSize(500, 500);
+
+        // Create a JTable and set its model
+        tableModel = new DefaultTableModel();
+        table = new JTable(tableModel);
+        JScrollPane scrollPane = new JScrollPane(table);
+        getContentPane().add(scrollPane);
+
+        // Connect to the database
+        try {
+            //String url = // (this is an example give the database location here) “jdbc:mysql://localhost:3306/school”;
+                    //String user = // give the User name ;
+                    //String password = // give the Password;
+                    //Connection conn = DriverManager.getConnection(url, user, password);
+
+            // Execute a query to retrieve the data
+            Connection con = DataBaseConnection.getCon();
+            Statement st = con.createStatement();
+            String sql = "SELECT * FROM classrooms";
+            ResultSet rs = st.executeQuery(sql);
+
+            // Add the data to the table model
+            tableModel.addColumn("Classroom ID");
+            tableModel.addColumn("Faculty");
+            tableModel.addColumn("Class Name");
+            tableModel.addColumn("Capacity");
+
+            while (rs.next()) {
+                Object[] row = new Object[4];
+                row[0] = rs.getInt("classroom_id");
+                row[1] = rs.getString("faculty");
+                row[2] = rs.getString("class_name");
+                row[3] = rs.getInt("capacity");
+                tableModel.addRow(row);
+            }
+
+            // Close the database connection
+            //rs.close();
+            //stmt.close();
+            //con.close();
+        } catch (SQLException ex) {
+            System.out.println("Database connection failed");
+        }
+        
+    }
      
 }
