@@ -1,9 +1,15 @@
 package Admin;
 
 
+import classes.DataBaseConnection;
 import classes.Resource;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -41,7 +47,7 @@ public class Resources extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableResorce = new javax.swing.JTable();
         jButton4 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
@@ -51,7 +57,6 @@ public class Resources extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(450, 650));
-        setPreferredSize(new java.awt.Dimension(450, 650));
         setResizable(false);
         setSize(new java.awt.Dimension(450, 650));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -74,10 +79,10 @@ public class Resources extends javax.swing.JFrame {
         });
         getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 170, 30));
 
-        jTable1.setBackground(new java.awt.Color(38, 106, 169));
-        jTable1.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(255, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableResorce.setBackground(new java.awt.Color(38, 106, 169));
+        jTableResorce.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
+        jTableResorce.setForeground(new java.awt.Color(255, 255, 255));
+        jTableResorce.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -114,17 +119,17 @@ public class Resources extends javax.swing.JFrame {
                 "Type", "Quantity"
             }
         ));
-        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTable1.setGridColor(new java.awt.Color(255, 255, 255));
-        jTable1.setRowHeight(25);
-        jTable1.setRowMargin(5);
-        jTable1.setRowSelectionAllowed(false);
-        jTable1.setSelectionBackground(new java.awt.Color(38, 106, 169));
-        jTable1.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        jTable1.setShowGrid(false);
-        jScrollPane1.setViewportView(jTable1);
+        jTableResorce.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jTableResorce.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTableResorce.setGridColor(new java.awt.Color(255, 255, 255));
+        jTableResorce.setRowHeight(25);
+        jTableResorce.setRowMargin(5);
+        jTableResorce.setRowSelectionAllowed(false);
+        jTableResorce.setSelectionBackground(new java.awt.Color(38, 106, 169));
+        jTableResorce.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        jTableResorce.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        jTableResorce.setShowGrid(false);
+        jScrollPane1.setViewportView(jTableResorce);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 350, 340));
 
@@ -214,13 +219,69 @@ public class Resources extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         
-        String class_selected = jComboBox1.getSelectedItem().toString();
+        showResource();
         
-        Resource obj = new Resource();
-        
-        obj.showResource(class_selected);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    
+    public void showResource(){
+        
+        try {
+            
+            ResultSet rs;
+            
+            Connection con = DataBaseConnection.getCon();
+            Statement st = con.createStatement();
+            
+            
+            if ( jComboBox1.getSelectedItem().toString() == "cls1" ){
+                
+                String sql = "SELECT type, quantity FROM resources WHERE classroom = 'cls1'";
+                rs = st.executeQuery(sql);
+                
+            } else if ( jComboBox1.getSelectedItem().toString() == "cls2" ){
+                
+                String sql = "SELECT type, quantity FROM resources WHERE classroom = 'cls2'";
+                rs = st.executeQuery(sql);
+                
+            } else if ( jComboBox1.getSelectedItem().toString() == "cls3" ){
+                
+                String sql = "SELECT type, quantity FROM resources WHERE classroom = 'cls3'";
+                rs = st.executeQuery(sql);
+                
+            } else if ( jComboBox1.getSelectedItem().toString() == "cls4" ){
+                
+                String sql = "SELECT type, quantity FROM resources WHERE classroom = 'cls4'";
+                rs = st.executeQuery(sql);
+                
+            } else {
+                
+                String sql = "SELECT type, quantity FROM resources WHERE classroom = 'cls5'";
+                rs = st.executeQuery(sql);
+                
+            }
+            
+            
+            DefaultTableModel tableModel = new DefaultTableModel();
+            jTableResorce.setModel(tableModel);
+            
+            
+            tableModel.setColumnIdentifiers(new Object[] {"Type", "Quantity"});
+            
+            while (rs.next()) {
+            Object[] row = new Object[2];
+            row[0] = rs.getString("type");
+            row[1] = rs.getInt("quantity");
+            } 
+            
+            
+        } catch (SQLException ex) {
+            System.out.println("Database connection failed");
+        }
+        
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -266,6 +327,6 @@ public class Resources extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable jTable1;
+    public javax.swing.JTable jTableResorce;
     // End of variables declaration//GEN-END:variables
 }

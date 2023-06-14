@@ -18,7 +18,9 @@ import java.sql.DriverManager;
  * @author Muhammed
  */
 public class DataBaseConnection {
-        static com.mysql.jdbc.Connection getCon(){
+    
+    
+        public static com.mysql.jdbc.Connection getCon(){
             
         try
         {
@@ -31,6 +33,8 @@ public class DataBaseConnection {
             System.out.println(e);
             return null;
         }
+        
+        
     }
               
 }

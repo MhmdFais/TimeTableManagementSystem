@@ -262,7 +262,7 @@ public class Schedule {
         return false;
     }
     
-    public void showSubjects(){
+    /**public void showSubjects(){
         
         try {
             Connection con = DataBaseConnection.getCon();
@@ -285,7 +285,8 @@ public class Schedule {
         } catch (SQLException e){
             System.out.println("Subjects showing failed "+e);
         }
-    }
+        
+    }**/
     
     
 }

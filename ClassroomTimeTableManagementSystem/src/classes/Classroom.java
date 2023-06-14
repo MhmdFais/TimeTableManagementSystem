@@ -11,6 +11,8 @@ package classes;
 import Admin.Classrooms;
 import java.sql.*;
 import java.sql.Connection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -22,21 +24,17 @@ public class Classroom extends JFrame{
    private String classroom;
    private int capacity;
 
-    public Classroom(String faculty, String classroom, int capacity) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public Classroom() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
     
-     public void sub(String faculty, String classroom, int capacity){
+    
+    public void sub(String faculty, String classroom, int capacity) throws SQLException{
                     
+        
+                     Connection con = DataBaseConnection.getCon();
+                     Statement st = con.createStatement();
                     try {
-                              Connection con = DataBaseConnection.getCon();
-                              Statement st = con.createStatement();
-                              st.executeUpdate( " INSERT INTO classroom (classroom, faculty, capacity)  VALUES ( ' "+classroom+" ',' "+faculty+" ', ' "+capacity+" '  )"  );
-                              JOptionPane.showMessageDialog(null, "Successfull info addition!");
+                             
+                              st.executeUpdate( " INSERT INTO classroom (classroom, faculty, capacity) VALUES (' "+classroom+" ',' "+faculty+" ',' "+capacity+" ')  "  );
+                              //JOptionPane.showMessageDialog(null, "Successfull info addition!");
                               System.out.println("Successfull info addition");
                               JOptionPane.showMessageDialog(null, "Info addition successful !");
                     } catch ( SQLException e ) {
@@ -44,7 +42,7 @@ public class Classroom extends JFrame{
                               System.out.println("error " + e);
                     }
                     //DataBaseConnection.closeCon();
-     }
+     } 
 
     public void del(String faculty, String classroom, int capacity) {
           try {
@@ -67,7 +65,7 @@ public class Classroom extends JFrame{
                       Connection con = DataBaseConnection.getCon();
                       Statement st;
                       st = con.createStatement();
-                      int rowsUpdated = st.executeUpdate("UPDATE classroom set capacity = ' "+capacity+" ' WHERE faculty = ' "+faculty+" ', classroom = ' "+classroom+" ' ");
+                      int rowsUpdated = st.executeUpdate("INSERT INTO classroom (classroom, faculty, capacity) VALUES ('"+classroom+"','"+faculty+"','"+capacity+"')");
                               JOptionPane.showMessageDialog(null, "Successfully updated");
                               System.out.println(rowsUpdated+"Successfully deleted");
                     } catch ( SQLException ex ) {
@@ -104,10 +102,10 @@ public class Classroom extends JFrame{
         }
     }**/
      
-    public void showClassroom(){
+    /**public void showClassroom(){
         
-        JTable table;
-        DefaultTableModel tableModel;
+        //JTable table;
+        //DefaultTableModel tableModel;
         
         
         //super("Classrooms");
@@ -115,10 +113,10 @@ public class Classroom extends JFrame{
         //setSize(500, 500);
 
         // Create a JTable and set its model
-        tableModel = new DefaultTableModel();
-        table = new JTable(tableModel);
-        JScrollPane scrollPane = new JScrollPane(table);
-        getContentPane().add(scrollPane);
+        //tableModel = new DefaultTableModel();
+        //table = new JTable(tableModel);
+        //JScrollPane scrollPane = new JScrollPane(table);
+        //getContentPane().add(scrollPane);
 
         // Connect to the database
         try {
@@ -130,12 +128,17 @@ public class Classroom extends JFrame{
             // Execute a query to retrieve the data
             Connection con = DataBaseConnection.getCon();
             Statement st = con.createStatement();
-            String sql = "SELECT * FROM classrooms";
+            String sql = "SELECT classroom,faulty,capacity FROM classrooms";
             ResultSet rs = st.executeQuery(sql);
+            
+             DefaultTableModel tableModel = new DefaultTableModel();
+             jTableClass.setModel(tableModel);
 
             // Add the data to the table model
             tableModel.addColumn("Classroom ID");
             tableModel.addColumn("Faculty");
+            
+            
             tableModel.addColumn("Class Name");
             tableModel.addColumn("Capacity");
 
@@ -156,6 +159,8 @@ public class Classroom extends JFrame{
             System.out.println("Database connection failed");
         }
         
-    }
+    }**/
+    
+    
      
 }

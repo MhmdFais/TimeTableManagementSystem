@@ -2,8 +2,14 @@ package Admin;
 
 
 import classes.AdminUserAdd;
+import classes.DataBaseConnection;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -39,7 +45,7 @@ public class UserSettings extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableUser = new javax.swing.JTable();
         jButton4 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
@@ -49,15 +55,14 @@ public class UserSettings extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(450, 650));
-        setPreferredSize(new java.awt.Dimension(450, 650));
         setResizable(false);
         setSize(new java.awt.Dimension(450, 650));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setBackground(new java.awt.Color(38, 106, 169));
-        jTable1.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(255, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableUser.setBackground(new java.awt.Color(38, 106, 169));
+        jTableUser.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
+        jTableUser.setForeground(new java.awt.Color(255, 255, 255));
+        jTableUser.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -114,17 +119,17 @@ public class UserSettings extends javax.swing.JFrame {
                 "Username", "Role"
             }
         ));
-        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTable1.setGridColor(new java.awt.Color(255, 255, 255));
-        jTable1.setRowHeight(25);
-        jTable1.setRowMargin(5);
-        jTable1.setRowSelectionAllowed(false);
-        jTable1.setSelectionBackground(new java.awt.Color(38, 106, 169));
-        jTable1.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        jTable1.setShowGrid(false);
-        jScrollPane1.setViewportView(jTable1);
+        jTableUser.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jTableUser.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTableUser.setGridColor(new java.awt.Color(255, 255, 255));
+        jTableUser.setRowHeight(25);
+        jTableUser.setRowMargin(5);
+        jTableUser.setRowSelectionAllowed(false);
+        jTableUser.setSelectionBackground(new java.awt.Color(38, 106, 169));
+        jTableUser.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        jTableUser.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        jTableUser.setShowGrid(false);
+        jScrollPane1.setViewportView(jTableUser);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 350, 380));
 
@@ -202,13 +207,47 @@ public class UserSettings extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        AdminUserAdd obj = new AdminUserAdd();
-        UserSettings userSettings = new UserSettings();
-        obj.showUser(userSettings);
+        
+        
+        showUser();
         
         //obj.showUser();
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    
+    public void showUser(){
+        
+        try {
+            
+            
+            Connection con = DataBaseConnection.getCon();
+            Statement st = con.createStatement();
+            String sql = "SELECT username,role FROM admin";
+            ResultSet rs = st.executeQuery(sql);
+            
+            DefaultTableModel tableModel = new DefaultTableModel();
+            jTableUser.setModel(tableModel);
+            
+            
+            tableModel.setColumnIdentifiers(new Object[] {"Username", "Role"});
+            
+            while (rs.next()) {
+            Object[] row = new Object[2];
+            row[0] = rs.getString("username");
+            row[1] = rs.getString("role");
+            tableModel.addRow(row);
+            } 
+            
+            
+        } catch (SQLException ex) {
+            System.out.println("Database connection failed");
+        }
+
+        
+        
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -251,6 +290,6 @@ public class UserSettings extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable jTable1;
+    public javax.swing.JTable jTableUser;
     // End of variables declaration//GEN-END:variables
 }

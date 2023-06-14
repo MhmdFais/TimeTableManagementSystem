@@ -1,9 +1,15 @@
 package Admin;
 
 
+import classes.DataBaseConnection;
 import classes.Schedule;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -39,7 +45,7 @@ public class Subjects extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableSubjects = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -48,15 +54,14 @@ public class Subjects extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(450, 650));
-        setPreferredSize(new java.awt.Dimension(450, 650));
         setResizable(false);
         setSize(new java.awt.Dimension(450, 650));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setBackground(new java.awt.Color(38, 106, 169));
-        jTable1.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(255, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableSubjects.setBackground(new java.awt.Color(38, 106, 169));
+        jTableSubjects.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
+        jTableSubjects.setForeground(new java.awt.Color(255, 255, 255));
+        jTableSubjects.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -93,17 +98,17 @@ public class Subjects extends javax.swing.JFrame {
                 "Subject Code", "Subject Name", "Faculty "
             }
         ));
-        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTable1.setGridColor(new java.awt.Color(255, 255, 255));
-        jTable1.setRowHeight(25);
-        jTable1.setRowMargin(5);
-        jTable1.setRowSelectionAllowed(false);
-        jTable1.setSelectionBackground(new java.awt.Color(38, 106, 169));
-        jTable1.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        jTable1.setShowGrid(false);
-        jScrollPane1.setViewportView(jTable1);
+        jTableSubjects.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jTableSubjects.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTableSubjects.setGridColor(new java.awt.Color(255, 255, 255));
+        jTableSubjects.setRowHeight(25);
+        jTableSubjects.setRowMargin(5);
+        jTableSubjects.setRowSelectionAllowed(false);
+        jTableSubjects.setSelectionBackground(new java.awt.Color(38, 106, 169));
+        jTableSubjects.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        jTableSubjects.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        jTableSubjects.setShowGrid(false);
+        jScrollPane1.setViewportView(jTableSubjects);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 420, 400));
 
@@ -165,10 +170,43 @@ public class Subjects extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         
-        Schedule obj = new Schedule();
-        obj.showSubjects();
+        shwSub();
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    
+    public void shwSub(){
+        
+        try {
+            
+            
+            Connection con = DataBaseConnection.getCon();
+            Statement st = con.createStatement();
+            String sql = "SELECT subject,subcode,faculty FROM subjects";
+            ResultSet rs = st.executeQuery(sql);
+            
+            DefaultTableModel tableModel = new DefaultTableModel();
+            jTableSubjects.setModel(tableModel);
+            
+            
+            tableModel.setColumnIdentifiers(new Object[] {"Subject Code", "Subject Name", "Faculty"});
+            
+            while (rs.next()) {
+            Object[] row = new Object[3];
+            row[0] = rs.getString("subcode");
+            row[1] = rs.getString("subject");
+            row[2] = rs.getString("faculty");
+            tableModel.addRow(row);
+            } 
+            
+            
+        } catch (SQLException ex) {
+            System.out.println("Database connection failed");
+        }
+        
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -217,6 +255,6 @@ public class Subjects extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable jTable1;
+    public javax.swing.JTable jTableSubjects;
     // End of variables declaration//GEN-END:variables
 }

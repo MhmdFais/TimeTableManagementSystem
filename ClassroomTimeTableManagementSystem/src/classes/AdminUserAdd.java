@@ -117,7 +117,7 @@ public class AdminUserAdd {
             ResultSet rs = st.executeQuery("SELECT username, role FROM admin");
             
             //UserSettings objc = new UserSettings();
-            DefaultTableModel model = (DefaultTableModel) userSettings.jTable1.getModel();
+            DefaultTableModel model = (DefaultTableModel) userSettings.jTableUser.getModel();
             model.setRowCount(10);
             
             while (rs.next()) {
@@ -127,8 +127,8 @@ public class AdminUserAdd {
                 model.addRow(row);
             }
             
-            userSettings.jTable1.validate();
-            userSettings.jTable1.repaint();
+            userSettings.jTableUser.validate();
+            userSettings.jTableUser.repaint();
             
             System.out.println("subject showing success");
             

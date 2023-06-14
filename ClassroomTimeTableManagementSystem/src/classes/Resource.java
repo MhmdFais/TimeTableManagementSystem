@@ -44,7 +44,7 @@ public class Resource {
                      ResultSet rs = st.executeQuery("SELECT type, quantity FROM resources WHERE classroom = '"+classSelected+"' ");
                      
                      Resources objd = new Resources();
-                     DefaultTableModel model = (DefaultTableModel) objd.jTable1.getModel();
+                     DefaultTableModel model = (DefaultTableModel) objd.jTableResorce.getModel();
                      model.setRowCount(0);
                      
                      while (rs.next()) {
@@ -66,7 +66,7 @@ public class Resource {
                      ResultSet rs = st.executeQuery("SELECT type, quantity FROM resources WHERE classroom = '"+classSelected+"' ");
                      
                      Resources objd = new Resources();
-                     DefaultTableModel model = (DefaultTableModel) objd.jTable1.getModel();
+                     DefaultTableModel model = (DefaultTableModel) objd.jTableResorce.getModel();
                      model.setRowCount(0);
                      
                      while (rs.next()) {
@@ -91,7 +91,7 @@ public class Resource {
                      //view.setModel(DbUtils.resultSetToTableModel(re))
                      
                      Resources objd = new Resources();
-                     DefaultTableModel model = (DefaultTableModel) objd.jTable1.getModel();
+                     DefaultTableModel model = (DefaultTableModel) objd.jTableResorce.getModel();
                      model.setRowCount(0);
                      
                      while (rs.next()) {

@@ -1,5 +1,6 @@
 
 import Admin.Dashboard;
+import classes.DataBaseConnection;
 import classes.User;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
@@ -155,7 +156,9 @@ public class Login extends javax.swing.JFrame {
             }} catch (SQLException ex) {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-       
+        
+        
+      
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

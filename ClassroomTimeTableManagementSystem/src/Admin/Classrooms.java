@@ -2,9 +2,18 @@ package Admin;
 
 
 import classes.Classroom;
+import classes.DataBaseConnection;
 import classes.Schedule;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -40,7 +49,7 @@ public class Classrooms extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableClass = new javax.swing.JTable();
         jButton8 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -52,62 +61,61 @@ public class Classrooms extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(450, 650));
-        setPreferredSize(new java.awt.Dimension(450, 650));
         setResizable(false);
         setSize(new java.awt.Dimension(450, 650));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setBackground(new java.awt.Color(38, 106, 169));
-        jTable1.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(255, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableClass.setBackground(new java.awt.Color(38, 106, 169));
+        jTableClass.setFont(new java.awt.Font("Poppins Medium", 0, 18)); // NOI18N
+        jTableClass.setForeground(new java.awt.Color(255, 255, 255));
+        jTableClass.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Faculty", "Class Code", "Capacity", "Whiteboards", "Projectors"
+                "Faculty", "Classroom", "Capacity"
             }
         ));
-        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTable1.setGridColor(new java.awt.Color(255, 255, 255));
-        jTable1.setRowHeight(25);
-        jTable1.setRowMargin(5);
-        jTable1.setRowSelectionAllowed(false);
-        jTable1.setSelectionBackground(new java.awt.Color(38, 106, 169));
-        jTable1.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        jTable1.setShowGrid(false);
-        jScrollPane1.setViewportView(jTable1);
+        jTableClass.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jTableClass.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jTableClass.setGridColor(new java.awt.Color(255, 255, 255));
+        jTableClass.setRowHeight(25);
+        jTableClass.setRowMargin(5);
+        jTableClass.setRowSelectionAllowed(false);
+        jTableClass.setSelectionBackground(new java.awt.Color(38, 106, 169));
+        jTableClass.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        jTableClass.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        jTableClass.setShowGrid(false);
+        jScrollPane1.setViewportView(jTableClass);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 420, 340));
 
@@ -231,10 +239,45 @@ public class Classrooms extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        Classroom obj = new Classroom();
-        obj.showClassroom();
+        
+        showTable();
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    
+    
+    public void showTable(){
+        
+        try {
+            
+            
+            Connection con = DataBaseConnection.getCon();
+            Statement st = con.createStatement();
+            String sql = "SELECT classroom,faculty,capacity FROM classroom";
+            ResultSet rs = st.executeQuery(sql);
+            
+            DefaultTableModel tableModel = new DefaultTableModel();
+            jTableClass.setModel(tableModel);
+            
+            
+            tableModel.setColumnIdentifiers(new Object[] {"Faculty", "Classroom", "Capacity"});
+            
+            while (rs.next()) {
+            Object[] row = new Object[3];
+            row[0] = rs.getString("faculty");
+            row[1] = rs.getString("classroom");
+            row[2] = rs.getInt("capacity");
+            tableModel.addRow(row);
+            } 
+            
+            
+        } catch (SQLException ex) {
+            System.out.println("Database connection failed");
+        }
+            
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -282,6 +325,6 @@ public class Classrooms extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable jTable1;
+    public javax.swing.JTable jTableClass;
     // End of variables declaration//GEN-END:variables
 }

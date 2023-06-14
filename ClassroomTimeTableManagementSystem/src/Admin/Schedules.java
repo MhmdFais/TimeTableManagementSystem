@@ -1,8 +1,14 @@
 package Admin;
 
 
+import classes.DataBaseConnection;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -38,7 +44,7 @@ public class Schedules extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableSchedule = new javax.swing.JTable();
         jButton4 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
@@ -51,7 +57,7 @@ public class Schedules extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(750, 500));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableSchedule.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -62,7 +68,7 @@ public class Schedules extends javax.swing.JFrame {
                 "Start Time", "End Time", "Faculty", "Class Room", "Subject", "Subject Code"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableSchedule);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 570, 300));
 
@@ -90,6 +96,11 @@ public class Schedules extends javax.swing.JFrame {
         jButton3.setBorder(null);
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jButton3.setIconTextGap(7);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 160, 40));
 
         jButton1.setBackground(new java.awt.Color(237, 30, 121));
@@ -138,6 +149,49 @@ public class Schedules extends javax.swing.JFrame {
         add.setVisible (true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        
+        showTable();
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    
+    public void showTable(){
+        
+        try {
+            
+            Connection con = DataBaseConnection.getCon();
+            Statement st = con.createStatement();
+            String sql = "SELECT classname,subject,faculty,start,end,subid FROM schedule";
+            ResultSet rs = st.executeQuery(sql);
+            
+            DefaultTableModel tableModel = new DefaultTableModel();
+            jTableSchedule.setModel(tableModel);
+            
+            
+            tableModel.setColumnIdentifiers(new Object[] {"Start Time", "End Time", "Faculty", "Class Room", "Subject", "Subject Code"});
+            
+            while (rs.next()) {
+            Object[] row = new Object[6];
+            row[0] = rs.getString("start");
+            row[1] = rs.getString("end");
+            row[2] = rs.getString("faculty");
+            row[3] = rs.getString("classname");
+            row[4] = rs.getString("subject");
+            row[5] = rs.getString("subid");
+            tableModel.addRow(row);
+            } 
+            
+            
+        } catch (SQLException ex) {
+            System.out.println("Database connection failed");
+        }
+
+        
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -187,6 +241,6 @@ public class Schedules extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableSchedule;
     // End of variables declaration//GEN-END:variables
 }

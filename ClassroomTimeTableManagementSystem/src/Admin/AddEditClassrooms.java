@@ -1,6 +1,9 @@
 package Admin;
 
 import classes.Classroom;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -175,7 +178,7 @@ public class AddEditClassrooms extends javax.swing.JFrame {
         String capacity = jTextField3.getText();
         int capacityInt = Integer.parseInt(capacity);
         
-        Classroom obj = new Classroom(faculty,classroom,capacityInt);
+        Classroom obj = new Classroom();
         
         obj.upd(faculty,classroom,capacityInt);
         
@@ -191,7 +194,11 @@ public class AddEditClassrooms extends javax.swing.JFrame {
         
         Classroom obj = new Classroom();
         
-        obj.sub(faculty, classroom, capacityInt);
+        try {
+            obj.sub(faculty, classroom, capacityInt);
+        } catch (SQLException ex) {
+            Logger.getLogger(AddEditClassrooms.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_addclassActionPerformed
 
@@ -202,7 +209,7 @@ public class AddEditClassrooms extends javax.swing.JFrame {
         String capacity = jTextField3.getText();
         int capacityInt = Integer.parseInt(capacity);
         
-        Classroom obj = new Classroom(faculty,classroom,capacityInt);
+        Classroom obj = new Classroom();
         
         obj.del(faculty,classroom,capacityInt);
     }//GEN-LAST:event_delclassActionPerformed

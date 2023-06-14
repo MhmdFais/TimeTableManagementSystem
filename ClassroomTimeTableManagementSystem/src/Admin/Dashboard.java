@@ -263,8 +263,6 @@ public class Dashboard extends javax.swing.JFrame {
         cls.setVisible(true);
         //cls.toFront();
         
-        Classroom obj = new Classroom();
-        obj.showClassroom();
     }//GEN-LAST:event_jClassroomActionPerformed
 
     private void jReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jReportActionPerformed
@@ -336,7 +334,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    public javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JButton jReport;
     private javax.swing.JButton jResource;
