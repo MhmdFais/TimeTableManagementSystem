@@ -222,7 +222,7 @@ public class Classrooms extends javax.swing.JFrame {
         sub.setVisible (true);
         Schedule obj = new Schedule();
         
-        obj.showSubjects();
+        //obj.showSubjects();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed

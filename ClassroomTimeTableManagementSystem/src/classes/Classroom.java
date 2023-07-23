@@ -49,7 +49,7 @@ public class Classroom extends JFrame{
                       Connection con = DataBaseConnection.getCon();
                       Statement st;
                       st = con.createStatement();
-                      int deleteQuerry = st.executeUpdate("DELETE FROM classroom VALUES ( ' "+faculty+" ', ' "+classroom+" ', ' "+capacity+" '  )");
+                      int deleteQuery = st.executeUpdate("DELETE FROM classroom WHERE faculty = '" + faculty + "' AND classroom = '" + classroom + "' AND capacity = " + capacity);
                               JOptionPane.showMessageDialog(null, "Successfully deleted");
                               System.out.println("Successfully deleted");
                     } catch ( SQLException ex ) {
@@ -61,18 +61,23 @@ public class Classroom extends JFrame{
     
      public void upd(String faculty, String classroom, int capacity) {
                       
-          try {      
-                      Connection con = DataBaseConnection.getCon();
-                      Statement st;
-                      st = con.createStatement();
-                      int rowsUpdated = st.executeUpdate("INSERT INTO classroom (classroom, faculty, capacity) VALUES ('"+classroom+"','"+faculty+"','"+capacity+"')");
-                              JOptionPane.showMessageDialog(null, "Successfully updated");
-                              System.out.println(rowsUpdated+"Successfully deleted");
-                    } catch ( SQLException ex ) {
-                              JOptionPane.showMessageDialog(null, "Action failed !");
-                              System.out.println(ex);
-                    }
-                    //DataBaseConnection.closeCon();   
+        try {      
+        Connection con = DataBaseConnection.getCon();
+        Statement st = con.createStatement();
+        String updateQuery = "UPDATE classroom SET capacity = " + capacity + " WHERE faculty = '" + faculty + "' AND classroom = '" + classroom + "'";
+        int rowsUpdated = st.executeUpdate(updateQuery);
+        
+        if (rowsUpdated > 0) {
+            JOptionPane.showMessageDialog(null, "Successfully updated");
+            System.out.println(rowsUpdated + " row(s) updated successfully");
+        } else {
+            JOptionPane.showMessageDialog(null, "No matching record found for update");
+        }
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Action failed!");
+        System.out.println(ex);
+    }
+    //DataBaseConnection.closeCon();    
     }
     
      

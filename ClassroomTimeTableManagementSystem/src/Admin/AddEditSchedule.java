@@ -285,7 +285,7 @@ public class AddEditSchedule extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Schedule added successfully!!");
         }
         else {
-            JOptionPane.showMessageDialog(null,"SQL Connection failed!");
+            //JOptionPane.showMessageDialog(null,"SQL Connection failed!");
         }
         
         
@@ -319,9 +319,9 @@ public class AddEditSchedule extends javax.swing.JFrame {
         String subName = jTextField2.getText().toLowerCase();
         String faculty = jTextField3.getText().toLowerCase();
         int seat = ((Integer) jSpinQuan.getValue());
-        String classroom = jComboBox2.getSelectedItem().toString();
-        int startTime = Integer.parseInt(jComboBox1.getSelectedItem().toString());
-        int endtTime = Integer.parseInt(jComboBox3.getSelectedItem().toString());
+        String classroom = jComboBox1.getSelectedItem().toString();
+        String startTime = jComboBox2.getSelectedItem().toString();
+        String endtTime = jComboBox3.getSelectedItem().toString();
         
         Schedule obj = new Schedule();
         
@@ -329,7 +329,7 @@ public class AddEditSchedule extends javax.swing.JFrame {
         
         if ( show ) {
             
-            boolean delete = obj.delete(subCode, subName, seat, subName, subName, classroom, faculty);
+            boolean delete = obj.delete( startTime, endtTime, classroom, faculty);
         
             if ( delete ){
                     JOptionPane.showMessageDialog(null, "Deleted successfully! ");

@@ -274,7 +274,7 @@ public class Dashboard extends javax.swing.JFrame {
           private void jSignoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSignoutActionPerformed
                     // TODO add your handling code here:
                     
-                    //Login obj = new Login();
+                    
                     
                     
           }//GEN-LAST:event_jSignoutActionPerformed

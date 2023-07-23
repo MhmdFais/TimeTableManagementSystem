@@ -1,8 +1,13 @@
 package Admin;
 
 
+import classes.Schedule;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -62,6 +67,11 @@ public class Reports extends javax.swing.JFrame {
         jButton4.setBorder(null);
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jButton4.setIconTextGap(7);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 410, 120, 40));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -125,6 +135,28 @@ public class Reports extends javax.swing.JFrame {
         new Dashboard().toFront();
         new Dashboard().setState(java.awt.Frame.NORMAL);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        
+       String selectedReportType = jComboBox1.getSelectedItem().toString();
+        
+        if (selectedReportType.equals("Class Schedules")) {
+             Schedule schedule = new Schedule();
+            // Call the generateSchedulePdf() method from the Schedule class
+            schedule.generateSchedulePdf();
+            System.out.println("PDF report generated successfully!");
+        } else if (selectedReportType.equals("Classroom Usage")) {
+            // If you have another report type, handle it here
+            // For example:
+            // ClassroomUsage.generateClassroomUsagePdf();
+            // System.out.println("Classroom Usage PDF report generated successfully!");
+        } else {
+            System.out.println("No data available for the selected report type: " + selectedReportType);
+        }
+        
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
